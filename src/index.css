@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .outline-input {
+    @apply focus:outline-[rgb(107,199,205)];
+  }
+}
+
+@layer utilities {
+  .toast-failed {
+    background: rgb(238, 61, 91) !important;
+    color: white;
+  }
+  .toast-success {
+    background: rgb(36, 192, 54) !important;
+    color: white;
+  }
+  .visi-hidden {
+    visibility: hidden;
+  }
+  .table-row:nth-child(even) {
+    background-color: rgb(234, 232, 232);
+  }
+  .row {
+    display: flex;
+    padding: 0.5rem;
+  }
+
+  /* width */
+  .scroll-thumb::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  .scroll-thumb::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  .scroll-thumb::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  .scroll-thumb::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  .bg-circle {
+    background: radial-gradient(circle, transparent, rgba(0, 0, 0, 0.4));
+  }
+  .swiper-wrapper {
+    width: fit-content !important;
+    display: flex;
+  }
+}

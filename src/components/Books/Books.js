@@ -1,0 +1,157 @@
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
+import { GiWhiteBook } from 'react-icons/gi';
+import { ImBooks } from 'react-icons/im';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { getTotalBooks } from '../../features/totalSlice';
+import BookMember from '../Book/BookMember';
+import Card from '../Card';
+
+// CATEGORY
+const categories = ['Umum', 'Seni & Musik', 'Biografi', 'Bisnis', 'Komik', 'Komputer & Teknologi', 'Pendidikan & Referensi', 'Cooking', 'Hiburan', 'Sejarah', 'Self-Help', 'Agama', 'Medis', 'Sains'];
+const Books = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate('/add-book');
+  const [search, setSearch] = useState('');
+  const [message, setMessage] = useState(null);
+  const [bookId, setBookId] = useState('');
+  const [books, setBooks] = useState([]);
+  const selectElemet = useRef();
+  const [filter, setFilter] = useState('All');
+  const { totalBooks } = useSelector((state) => state.total);
+  const [skip, setSkip] = useState(0);
+  const [isEnd, setIsEnd] = useState(false);
+
+  useEffect(() => {
+    const cancelToken = axios.CancelToken.source();
+    const getBoosks = async () => {
+      try {
+        const res = await axios.get(`http://localhost:4000/api/books/v1/get/pagination?skip=${skip}`, {
+          cancelToken: cancelToken.token,
+        });
+        dispatch(getTotalBooks(res.data.totalData));
+        if (res.data.data.length === 0) {
+          return setIsEnd(true);
+        }
+        if (filter === 'All') {
+          setBooks([...books, ...res.data.data]);
+        } else {
+          let filterBooks = res.data.data.filter((user) => user.category === filter);
+          if (filterBooks.length === 0) {
+            return setIsEnd(true);
+          }
+          setBooks(filterBooks);
+        }
+      } catch (err) {
+        if (axios.isCancel(err)) {
+          console.log('cancelled!');
+        } else {
+          console.log(err.message);
+        }
+      }
+    };
+    getBoosks();
+    return () => {
+      cancelToken.cancel();
+    };
+  }, [bookId, dispatch, filter, skip]);
+
+  // DELETE BOOK
+  const deleteBook = async (id) => {
+    try {
+      await axios.delete(`http://localhost:4000/api/books/v1/delete/book/${id}`);
+      toast('Delete Success', {
+        className: 'toast-success',
+        bodyClassName: 'toast-success',
+      });
+      setBookId(id);
+    } catch (err) {
+      toast('Delete Failed', {
+        className: 'toast-failed',
+        bodyClassName: 'toast-failed',
+      });
+      console.log(err);
+    }
+  };
+  // SEARCH BOOK
+  const searchBook = async (e) => {
+    e.preventDefault();
+    setBooks('');
+    try {
+      const res = await axios.get(`http://localhost:4000/api/books/v1/get/search/${search}`);
+      if (res.data.data.length > 1) {
+        setMessage(null);
+        setBooks([...res.data.data].reverse());
+      } else {
+        setMessage('You have seen all of book');
+      }
+    } catch (err) {
+      if (err.response.status === 404) {
+        setMessage('Upss, Not found the book');
+      }
+      console.log(err);
+    }
+    setSearch('');
+  };
+
+  //HANDLE SCROLL
+  const handleScroll = (e) => {
+    const { offsetHeight, scrollTop, scrollHeight } = e.target;
+    if (offsetHeight + scrollTop >= scrollHeight - 500) {
+      setSkip(books?.length);
+    }
+  };
+  return (
+    <div onScroll={handleScroll} className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-scroll scroll-smooth scroll-thumb">
+      <>
+        <ToastContainer />
+        <div className="flex justify-between items-start md:space-y-0 space-y-2 md:items-center md:flex-row flex-col text-black/70 mb-4">
+          <p className="text-xl font-bold">Daftar Buku</p>
+          <p>
+            <span className="text-blue-600">Beranda</span> / Daftar Buku
+          </p>
+        </div>
+        <div className="w-full flex items-end  md:items-center justify-between mb-3">
+          <h3 className="text-lg font-semibold flex justify-start gap-2 items-center ">
+            <ImBooks className="text-2xl" />
+          </h3>
+
+          <form onSubmit={searchBook} className="flex gap-2 md:items-center items-end md:flex-row flex-col  font-semibold">
+            <button type="submit">Search by title: </button>
+            <input onChange={(e) => setSearch(e.target.value)} value={search} className="px-[10px] py-1 placeholder:text-[14px]" type="text" placeholder="Search book" />
+          </form>
+        </div>
+      </>
+      <div className="flex flex-col h-auto w-full bg-white pb-6 px-2 md:px-6 shadow-sm">
+        <div className="flex md:flex-row flex-col justify-between items-center py-4 my-4 border-b-2">
+          <Card total={totalBooks} className="flex items-center  gap-4 text-left justify-between w-fit p-4 " text="Total buku" icon={<GiWhiteBook className="text-6xl text-white" />} />
+          <div className="flex md:justify-between md:flex-row flex-col flex-row-reverse gap-4 items-start md:items-center">
+            <label htmlFor="filter" className="p-2 block w-fit">
+              <strong className="tracking-wide">Filter:</strong>{' '}
+              <select ref={selectElemet} onChange={(e) => setFilter(e.target.value)} name="category" id="category" className="p-[5px] md:p-[10px] md:text-[16px] text-[12px] bg-slate-100 rounded-sm outline-input">
+                <option value="All">Semua</option>
+                {categories.map((cate) => (
+                  <option key={cate} value={cate}>
+                    {cate}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        </div>
+        <div className={`grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 gap-y-2 overflow-hidden`}>
+          {books?.map((buku) => (
+            <BookMember deleteBook={deleteBook} key={buku._id} {...buku} />
+          ))}
+        </div>
+        <div className="text-center w-full p-2">{isEnd ? <p>No more book!</p> : <p>Loading..</p>}</div>
+      </div>
+    </div>
+  );
+};
+
+export default Books;
