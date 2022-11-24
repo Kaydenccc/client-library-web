@@ -161,7 +161,7 @@ const FormAddBook = () => {
     return <Navigate to="/protect" replace />;
   }
   return (
-    <div className="flex-[1] flex-col flex bg-slate-200 py-8 px-6 overflow-y-scroll">
+    <div className="flex-[1] flex-col flex bg-slate-200 py-8 px-[8px] md:px-6 overflow-y-scroll">
       <ToastContainer />
 
       {pathname === '/update-book/' + id ? (
