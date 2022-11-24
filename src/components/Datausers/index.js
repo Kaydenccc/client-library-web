@@ -38,7 +38,7 @@ const Datausers = () => {
         </p>
       </div>
       <div className="flex flex-col h-auto w-full">
-        <Table tableName="Table Data Users" icon={<Card total={totalUsers} className="flex items-center gap-4 text-left justify-between w-fit p-4 " text="Total User" icon={<IoIosPeople className="text-6xl text-white" />} />} />
+        <Table tableName="Table Data Users" icon={<Card total={totalUsers} className="flex items-center gap-4 text-left justify-between w-fit p-4 mt-4" text="Total User" icon={<IoIosPeople className="text-6xl text-white" />} />} />
       </div>
       <Footer />
     </div>

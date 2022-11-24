@@ -151,7 +151,7 @@ const Books = () => {
               </select>
             </label>
             {user?.user?.admin && (
-              <button onClick={() => navigate('/add-book')} className="px-4 mt-4 self-start md:self-center md:text-[16px] text-[14px] mr-4 h-fit bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-md shadow-sm font-medium">
+              <button onClick={() => navigate('/add-book')} className="px-4 mt-4 md:mt-0 self-start md:self-center md:text-[16px] text-[14px] mr-4 h-fit bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-md shadow-sm font-medium">
                 Add Book
               </button>
             )}
