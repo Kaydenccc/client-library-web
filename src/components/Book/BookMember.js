@@ -13,12 +13,12 @@ const BookMember = ({ _id, image, title, category, releaseAt, deleteBook }) => {
         onClick={() => navigate(`/detail-book/${_id}`)}
         className="absolute flex flex-col w-full justify-between bottom-0 p-2 left-0 top-0 right-0 hover:bg-circle opacity-0 hover:opacity-100  transition-all duration-500 text-white font-semibold"
       >
-        <div className="flex-1 text-[12px] md:text-xl ">
+        <div className="flex-1 text-[14px] md:text-xl ">
           <div className="">
             <p className=" text-ellipsis overflow-hidden whitespace-nowrap">{title}</p>
-            <p>{category}</p>
+            <p className="text-[12px] md:text-[14px]">{category}</p>
           </div>
-          <p>{releaseAt}</p>
+          <p className="text-[12px] md:text-[14px]">{releaseAt}</p>
         </div>
       </div>
       <div className="flex-1 flex items-end absolute left-0 bottom-0 p-2">
