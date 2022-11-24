@@ -131,7 +131,16 @@ const Books = () => {
 
           <form onSubmit={searchBook} className="flex gap-2 md:items-center items-end md:flex-row flex-col  font-semibold">
             <button type="submit">Search by title: </button>
-            <input onChange={(e) => setSearch(e.target.value)} value={search} className="px-[10px] py-1 placeholder:text-[14px]" type="text" placeholder="Search book" />
+            <input
+              onChange={(e) => {
+                setBooks([]);
+                setSearch(e.target.value);
+              }}
+              value={search}
+              className="px-[10px] py-1 placeholder:text-[14px]"
+              type="text"
+              placeholder="Search book"
+            />
           </form>
         </div>
       </>
