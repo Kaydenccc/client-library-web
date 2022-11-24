@@ -44,7 +44,7 @@ const DetailLog = () => {
     };
   }, [id]);
   return (
-    <div className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-6 overflow-y-scroll">
+    <div className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-6 overflow-y-auto">
       <div className="flex md:flex-row flex-col h-full w-full gap-4 px-6 py-11 bg-gradient-to-tr  bg-white font-semibold text-[#3d3222] ">
         <div className="space-y-4 h-full w-full md:w-1/2  flex flex-col items-center">
           <img className="w-[50%] " src={data?.data_book?.image} alt={data?.title + ' image'} />

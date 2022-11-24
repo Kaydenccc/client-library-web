@@ -50,7 +50,7 @@ const DashboardMember = () => {
     getUsers();
   }, [dispatch]);
   return (
-    <div className="flex-[1] w-full h-auto flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-scroll">
+    <div className="flex-[1] w-full h-auto flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-auto">
       <div className="flex justify-between flex-col space-y-2 md:space-y-0 md:flex-row items-center text-black/70">
         <p className="text-xl font-bold">Selamat datang Kayden di Perpustakaan digital</p>
         <p className="w-full md:w-fit">

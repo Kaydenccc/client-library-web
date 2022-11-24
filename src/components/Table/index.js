@@ -142,8 +142,8 @@ const Table = ({ tableName = 'Data Users', icon }) => {
       ) : null}
       <div className="flex-1 flex w-full whitespace-nowrap flex pb-6 md:pb-0 flex-col h-full bg-white p-2 md:p-6   shadow-sm overflow-hidden overflow-x-auto scroll-smooth scroll-thumb">
         <table className="w-[1150px] md:w-full">
-          <thead className="   ">
-            <tr className="text-left flex mr-[10px] p-2 border-b">
+          <thead className="">
+            <tr className="text-left flex p-2 border-b">
               <th className="flex-[0.5] overflow-hidden">No.</th>
               <th className="flex-[1]">Nim</th>
               <th className="flex-[0.8]">Nama</th>

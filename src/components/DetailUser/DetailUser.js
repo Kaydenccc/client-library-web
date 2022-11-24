@@ -39,7 +39,7 @@ const DetailUser = () => {
     return <Navigate to="/protect" replace />;
   }
   return (
-    <div className="h-full flex-col flex bg-slate-200 py-8 px-[8px] md:px-6 overflow-y-scroll">
+    <div className="h-full flex-col flex bg-slate-200 py-8 px-[8px] md:px-6 overflow-y-auto">
       <div className="w-full gap-4 pb-11 bg-gradient-to-tr rounded-tl-[5rem] bg-white font-semibold text-[#3d3222] ">
         <div className="min-h-[150px] md:min-h-[250px] w-full bg-gradient-to-t from-gray-500 to-gray-400 rounded-tl-[5rem]  px-6"></div>
         <div className="flex md:flex-row flex-col space-y-8 md:space-y-0 px-2 md:px-6 justify-between items-start md:items-center">
