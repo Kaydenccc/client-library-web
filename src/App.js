@@ -20,22 +20,21 @@ import FormUpdateTransaksi from './components/Form/FormUpdateTransaksi';
 import DetailLog from './components/DetailLog/DetailLog';
 import DetailUser from './components/DetailUser/DetailUser';
 import Protect from './components/Protect/Protect';
+import NotFound from './Pages/NotFound/NotFound';
 axios.defaults.withCredentials = true;
 
 function App() {
-  const { accessToken, user, isLoggedin } = useSelector((state) => state.login);
+  const { accessToken, isLoggedin } = useSelector((state) => state.login);
   const dispatch = useDispatch();
-  console.log('USER=', user);
   useEffect(() => {
     const _appSigning = localStorage.getItem('_appSigning');
 
     if (_appSigning) {
       const getAccessToken = async () => {
         try {
-          const res = await axios.get('http://localhost:4000/api/auth/v1/access', {
+          const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/access', {
             withCredentials: true,
           });
-          console.log('ac_token:', res.data);
           dispatch(getToken(res.data.ac_token));
         } catch (err) {
           console.log(err);
@@ -50,12 +49,11 @@ function App() {
     if (accessToken) {
       const getUser = async () => {
         dispatch(isLogin(true));
-        const res = await axios.get('http://localhost:4000/api/auth/v1/user', {
+        const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/user', {
           headers: {
             Authorization: accessToken,
           },
         });
-        console.log('APAKAH ADMIN: ', res.data.user?.admin);
         dispatch(getUserData(res.data));
       };
       getUser();
@@ -83,6 +81,7 @@ function App() {
         </Route>
         <Route path="protect" element={<Protect />} />
         <Route path="auth/reset/:token" element={<ResetPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

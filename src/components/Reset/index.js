@@ -43,7 +43,7 @@ const Reset = () => {
     }
     try {
       await axios.put(
-        'http://localhost:4000/api/auth/v1/reset-password',
+        'https://library-perpus.herokuapp.com/api/auth/v1/reset-password',
         { password },
         {
           headers: {

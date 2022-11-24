@@ -16,7 +16,7 @@ const BooksMember = () => {
   useEffect(() => {
     const getBoosks = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/books/v1/get/books`);
+        const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/books`);
         setBooks(res.data.data);
       } catch (err) {
         console.log(err.message);
@@ -28,7 +28,7 @@ const BooksMember = () => {
   // DELETE BOOK
   const deleteBook = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/books/v1/delete/book/${id}`);
+      await axios.delete(`https://library-perpus.herokuapp.com/api/books/v1/delete/book/${id}`);
       toast('Delete Success', {
         className: 'toast-success',
         bodyClassName: 'toast-success',

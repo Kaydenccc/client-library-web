@@ -22,13 +22,13 @@ const Table = ({ tableName = 'Data Users', icon }) => {
     const getUsers = async () => {
       try {
         if (filter === 'all') {
-          const res = await axios.get(`http://localhost:4000/api/auth/v1/users/pagination?skip=${skip}`, {
+          const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/users/pagination?skip=${skip}`, {
             cancelToken: cancelToken.token,
           });
           setUsers([...users, ...res.data.data]);
           return;
         } else {
-          const res = await axios.get('http://localhost:4000/api/auth/v1/users', {
+          const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/users', {
             cancelToken: cancelToken.token,
           });
           let filterUsers;
@@ -61,7 +61,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/auth/v1/user/${id}`);
+      await axios.delete(`https://library-perpus.herokuapp.com/api/auth/v1/user/${id}`);
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +72,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
     e.preventDefault();
     setUsers('');
     try {
-      const res = await axios.get(`http://localhost:4000/api/auth/v1/search/${search}`);
+      const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/search/${search}`);
       setMessage(null);
       setUsers(res.data.data);
     } catch (err) {

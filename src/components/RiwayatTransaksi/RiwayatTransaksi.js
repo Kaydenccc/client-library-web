@@ -16,7 +16,7 @@ const RiwayatTransaksi = () => {
     const cancelToken = axios.CancelToken.source();
     const getLogs = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/log/v1/log/pagination`, {
+        const res = await axios.get(`https://library-perpus.herokuapp.com/api/log/v1/log/pagination`, {
           cancelToken: cancelToken.token,
         });
         dispatch(getTotalTransaksi(res.data.totalData));

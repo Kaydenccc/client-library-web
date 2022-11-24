@@ -47,7 +47,7 @@ const FormTransaksi = () => {
 
     try {
       console.log(data);
-      await axios.post('http://localhost:4000/api/log/v1/log/book', data);
+      await axios.post('https://library-perpus.herokuapp.com/api/log/v1/log/book', data);
       setLoading(false);
       toast('Transaksi berhasil ditambahkan', {
         className: 'toast-success',
@@ -69,7 +69,7 @@ const FormTransaksi = () => {
     const cancelToken = axios.CancelToken.source();
     const getLogById = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/books/v1/get/book/${id}`, {
+        const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/book/${id}`, {
           cancelToken: cancelToken.token,
         });
         setBook(res.data.data);

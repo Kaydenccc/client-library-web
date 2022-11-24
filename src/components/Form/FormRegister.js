@@ -67,7 +67,7 @@ const FormRegister = () => {
       });
     }
     try {
-      const res = await axios.post('http://localhost:4000/api/auth/v1/register', data);
+      const res = await axios.post('https://library-perpus.herokuapp.com/api/auth/v1/register', data);
       toast(res.data.msg, {
         className: 'toast-success',
         bodyClassName: 'toast-success',

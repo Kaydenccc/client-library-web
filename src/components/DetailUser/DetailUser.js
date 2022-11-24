@@ -16,7 +16,7 @@ const DetailUser = () => {
     const cancelToken = axios.CancelToken.source();
     const getUsers = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/auth/v1/user/${id}`, {
+        const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/user/${id}`, {
           cancelToken: cancelToken.token,
         });
         setData(res.data.data);
@@ -34,7 +34,6 @@ const DetailUser = () => {
     };
   }, [id]);
 
-  console.log('user', user);
   // PROTECT DATA PERSONALITY OF OTHER USER
   if (!user?.user?.admin && id !== user?.user._id) {
     return <Navigate to="/protect" replace />;

@@ -38,7 +38,7 @@ const FormAddBook = () => {
     const cancelToken = axios.CancelToken.source();
     const getById = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/books/v1/get/book/${id}`, {
+        const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/book/${id}`, {
           cancelToken: cancelToken.token,
         });
         setData(res.data.data);
@@ -97,13 +97,13 @@ const FormAddBook = () => {
           formdata.append('penerbit', penerbit);
           formdata.append('author', author);
           formdata.append('description', description);
-          await axios.post('http://localhost:4000/api/books/v1/add/book', formdata, {
+          await axios.post('https://library-perpus.herokuapp.com/api/books/v1/add/book', formdata, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
           });
         } else {
-          await axios.post('http://localhost:4000/api/books/v1/add/book', data);
+          await axios.post('https://library-perpus.herokuapp.com/api/books/v1/add/book', data);
         }
         toast('Add book successfully', {
           className: 'toast-success',
@@ -131,13 +131,13 @@ const FormAddBook = () => {
           formdata.append('penerbit', penerbit);
           formdata.append('author', author);
           formdata.append('description', description);
-          await axios.put(`http://localhost:4000/api/books/v1/update/book/${id}`, formdata, {
+          await axios.put(`https://library-perpus.herokuapp.com/api/books/v1/update/book/${id}`, formdata, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
           });
         } else {
-          await axios.put(`http://localhost:4000/api/books/v1/update/book/${id}`, data);
+          await axios.put(`https://library-perpus.herokuapp.com/api/books/v1/update/book/${id}`, data);
         }
         setLoading(false);
         toast('Update successfully', {

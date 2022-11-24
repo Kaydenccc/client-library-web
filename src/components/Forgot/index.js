@@ -18,7 +18,7 @@ const Forgot = ({ setForgot }) => {
       });
     }
     try {
-      await axios.post(`http://localhost:4000/api/auth/v1/forgot-password`, { email });
+      await axios.post(`https://library-perpus.herokuapp.com/api/auth/v1/forgot-password`, { email });
       setLoading(false);
       handleReset();
       toast('We send you an email, Please check your email 📧', {

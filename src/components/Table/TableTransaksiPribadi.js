@@ -14,7 +14,7 @@ const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
     const getTransaksi = async () => {
       console.log('testtt');
       try {
-        const res = await axios.get('http://localhost:4000/api/log/v1/log/books');
+        const res = await axios.get('https://library-perpus.herokuapp.com/api/log/v1/log/books');
         let filterUsers = res.data?.data.filter((trans) => trans.data_user._id === id);
         console.log('TRANSAKSI=', filterUsers);
         setTransaksi(filterUsers);
@@ -50,7 +50,7 @@ const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
             </tr>
           </thead>
           <tbody className="w-full h-full flex flex-[1] flex-col">
-            {transaksi.length > 0 ? (
+            {transaksi?.length > 0 ? (
               transaksi.map((trans, i) => (
                 <tr key={i} className=" table-row row cursor-pointer">
                   <td className="flex-[0.5]">{i + 1}</td>

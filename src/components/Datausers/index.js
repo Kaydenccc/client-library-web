@@ -11,7 +11,7 @@ const Datausers = () => {
     const cancelToken = axios.CancelToken.source();
     const getUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/auth/v1/users/pagination', {
+        const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/users/pagination', {
           cancelToken: cancelToken.token,
         });
         setTotalUsers(res.data.totalData);

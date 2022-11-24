@@ -13,9 +13,9 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
+    localStorage.removeItem('_appSigning');
     try {
-      await axios.get('http://localhost:4000/api/auth/v1/signout');
-      localStorage.clear();
+      await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/signout');
     } catch (err) {
       console.log(err);
     }

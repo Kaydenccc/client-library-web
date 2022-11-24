@@ -4,7 +4,7 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { isEmail, isEmpty } from '../../helper/validate';
 import { useDispatch } from 'react-redux';
-import { getToken, isLogin } from '../../features/loginSlice';
+import { isLogin } from '../../features/loginSlice';
 
 const inisialState = {
   email: '',
@@ -40,10 +40,9 @@ const Login = ({ setForgot }) => {
       });
     }
     try {
-      const res = await axios.post('http://localhost:4000/api/auth/v1/login', data);
+      const res = await axios.post('https://library-perpus.herokuapp.com/api/auth/v1/login', data);
       localStorage.setItem('_appSigning', true);
       setLoading(false);
-      // dispatch(getToken(res.data.ac_token));
       toast(res.data.msg, {
         className: 'toast-success',
         bodyClassName: 'toast-success',

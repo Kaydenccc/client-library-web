@@ -13,7 +13,7 @@ const DetailLog = () => {
   const deleteLog = async () => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:4000/api/log/v1/log/book/${id}`);
+      await axios.delete(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`);
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -26,7 +26,7 @@ const DetailLog = () => {
     const cancelToken = axios.CancelToken.source();
     const fetch = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/log/v1/log/book/${id}`, {
+        const res = await axios.get(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`, {
           cancelToken: cancelToken.token,
         });
         setData(res.data.log);

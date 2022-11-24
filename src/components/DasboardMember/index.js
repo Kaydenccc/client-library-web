@@ -17,7 +17,7 @@ const DashboardMember = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/auth/v1/users/pagination');
+        const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/users/pagination');
         dispatch(getTotalUser(res.data.totalData));
       } catch (err) {
         console.log(err.message);
@@ -29,7 +29,7 @@ const DashboardMember = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/log/v1/log/pagination');
+        const res = await axios.get('https://library-perpus.herokuapp.com/api/log/v1/log/pagination');
         dispatch(getTotalTransaksi(res.data.totalData));
       } catch (err) {
         console.log(err.message);
@@ -41,7 +41,7 @@ const DashboardMember = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/books/v1/get/pagination');
+        const res = await axios.get('https://library-perpus.herokuapp.com/api/books/v1/get/pagination');
         dispatch(getTotalBooks(res.data.totalData));
       } catch (err) {
         console.log(err.message);

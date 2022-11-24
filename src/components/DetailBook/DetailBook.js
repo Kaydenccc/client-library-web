@@ -15,7 +15,7 @@ const DetailBook = () => {
     const cancelToken = axios.CancelToken.source();
     const fetch = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/books/v1/get/book/${id}`, {
+        const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/book/${id}`, {
           cancelToken: cancelToken.token,
         });
         setData(res.data.data);
@@ -32,7 +32,6 @@ const DetailBook = () => {
       cancelToken.cancel();
     };
   }, [id]);
-  console.log(data);
   const navigate = useNavigate();
   return (
     <div className="flex-[1]  flex-col flex bg-slate-200 pt-4 md:pt-8 pb-2 px-[8px] md:px-6 overflow-y-auto">

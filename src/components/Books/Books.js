@@ -4,7 +4,6 @@ import { GiWhiteBook } from 'react-icons/gi';
 import { ImBooks } from 'react-icons/im';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import { getTotalBooks } from '../../features/totalSlice';
@@ -15,7 +14,6 @@ import Card from '../Card';
 const categories = ['Umum', 'Seni & Musik', 'Biografi', 'Bisnis', 'Komik', 'Komputer & Teknologi', 'Pendidikan & Referensi', 'Cooking', 'Hiburan', 'Sejarah', 'Self-Help', 'Agama', 'Medis', 'Sains'];
 const Books = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate('/add-book');
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState(null);
   const [bookId, setBookId] = useState('');
@@ -24,13 +22,17 @@ const Books = () => {
   const [filter, setFilter] = useState('All');
   const { totalBooks } = useSelector((state) => state.total);
   const [skip, setSkip] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+
   const [isEnd, setIsEnd] = useState(false);
+
+  const booksHeight = useRef();
 
   useEffect(() => {
     const cancelToken = axios.CancelToken.source();
     const getBoosks = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/books/v1/get/pagination?skip=${skip}`, {
+        const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/pagination?skip=${skip}&perPage=${perPage}`, {
           cancelToken: cancelToken.token,
         });
         dispatch(getTotalBooks(res.data.totalData));
@@ -54,16 +56,20 @@ const Books = () => {
         }
       }
     };
+    const offsetHeight = booksHeight.current.offsetHeight;
+    if (offsetHeight > 1023.59) {
+      setPerPage(20);
+    }
     getBoosks();
     return () => {
       cancelToken.cancel();
     };
-  }, [bookId, dispatch, filter, skip]);
+  }, [bookId, dispatch, filter, skip, perPage]);
 
   // DELETE BOOK
   const deleteBook = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/books/v1/delete/book/${id}`);
+      await axios.delete(`https://library-perpus.herokuapp.com/api/books/v1/delete/book/${id}`);
       toast('Delete Success', {
         className: 'toast-success',
         bodyClassName: 'toast-success',
@@ -82,7 +88,7 @@ const Books = () => {
     e.preventDefault();
     setBooks('');
     try {
-      const res = await axios.get(`http://localhost:4000/api/books/v1/get/search/${search}`);
+      const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/search/${search}`);
       if (res.data.data.length > 1) {
         setMessage(null);
         setBooks([...res.data.data].reverse());
@@ -105,8 +111,9 @@ const Books = () => {
       setSkip(books?.length);
     }
   };
+
   return (
-    <div onScroll={handleScroll} className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-scroll scroll-smooth scroll-thumb">
+    <div onScroll={handleScroll} ref={booksHeight} className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-scroll scroll-smooth scroll-thumb">
       <>
         <ToastContainer />
         <div className="flex justify-between items-start md:space-y-0 space-y-2 md:items-center md:flex-row flex-col text-black/70 mb-4">

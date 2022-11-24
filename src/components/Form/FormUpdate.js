@@ -42,7 +42,7 @@ const FormUpdate = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/auth/v1/user/${userIdUpdate}`);
+        const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`);
         // setUser(res.data.data);
         setData({ ...res.data.data });
       } catch (err) {
@@ -66,7 +66,7 @@ const FormUpdate = () => {
       }
     }
     try {
-      const res = await axios.put(`http://localhost:4000/api/auth/v1/user/${userIdUpdate}`, data);
+      const res = await axios.put(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`, data);
       setData(res.data.data);
       setLoading(false);
       toast(res.data.msg, {

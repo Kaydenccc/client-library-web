@@ -22,7 +22,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     const cancelToken = axios.CancelToken.source();
     const getTransaksi = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/log/v1/log/books', {
+        const res = await axios.get('https://library-perpus.herokuapp.com/api/log/v1/log/books', {
           cancelToken: cancelToken.token,
         });
         let filterUsers;
@@ -43,7 +43,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
 
   const deleteLog = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/log/v1/log/book/${id}`);
+      await axios.delete(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`);
     } catch (err) {
       console.log(err);
     }
@@ -54,7 +54,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     e.preventDefault();
     setTransaksi('');
     try {
-      const res = await axios.get(`http://localhost:4000/api/log/v1/log/search/${search}`);
+      const res = await axios.get(`https://library-perpus.herokuapp.com/api/log/v1/log/search/${search}`);
       setMessage(null);
       console.log(res.data.data);
       setTransaksi(res.data.log);
@@ -122,7 +122,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
             </tr>
           </thead>
           <tbody className="w-auto md:w-full h-full flex flex-[1] flex-col  overflow-y-auto scroll-thumb ">
-            {transaksi ? (
+            {transaksi.length > 0 ? (
               transaksi.map((trans, i) => (
                 <tr key={i} className=" table-row row cursor-pointer">
                   <td onClick={() => user?.user?.admin && navigate('/detail-log/' + trans._id)} className="flex-[0.5]">
