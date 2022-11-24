@@ -34,7 +34,7 @@ const RiwayatTransaksi = () => {
     };
   }, [dispatch]);
   return (
-    <div className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-scroll">
+    <div className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-auto">
       <div className="flex md:flex-row flex-col justify-between items-start md:space-y-0 space-y-2 md:items-center text-black/70 mb-4">
         <p className="text-xl font-bold">Riwayat Transaksi</p>
         <p>
