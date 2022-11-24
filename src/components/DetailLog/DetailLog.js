@@ -72,7 +72,7 @@ const DetailLog = () => {
                 <strong>Nama Peminjam:</strong> {data.nama_peminjam}
               </h2>
               <h2 className="">
-                <strong>NIM:</strong> {data.nim}
+                <strong>NIM / NIP:</strong> {data.nim}
               </h2>
               <h2 className="">
                 <strong>Profesi:</strong> {data.data_user?.profesi}
