@@ -104,7 +104,7 @@ const FormUpdate = () => {
       </div>
       <div className="flex flex-col space-y-1">
         <label className="cursor-pointer" htmlFor="nim">
-          NIM
+          NIM / NIP
         </label>
         <input onChange={handleChange} value={data.nim} className="p-[10px] bg-slate-100 rounded-sm outline-input" type="text" id="nim" name="nim" placeholder="Masukan nim mahasiswa" />
       </div>

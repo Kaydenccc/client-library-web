@@ -45,14 +45,14 @@ const DetailLog = () => {
   }, [id]);
   return (
     <div className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-6 overflow-y-scroll">
-      <div className="flex h-full w-full gap-4 px-6 py-11 bg-gradient-to-tr  bg-white font-semibold text-[#3d3222] ">
-        <div className="space-y-4 h-full w-1/2  flex flex-col items-center">
+      <div className="flex md:flex-row flex-col h-full w-full gap-4 px-6 py-11 bg-gradient-to-tr  bg-white font-semibold text-[#3d3222] ">
+        <div className="space-y-4 h-full w-full md:w-1/2  flex flex-col items-center">
           <img className="w-[50%] " src={data?.data_book?.image} alt={data?.title + ' image'} />
           <button disabled={loading} onClick={deleteLog} className="px-4 w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-md shadow-sm font-medium">
             {loading ? 'Loading...' : 'Delete Transaksi'}
           </button>
         </div>
-        <div className="space-y-2 w-1/2 overflow-y-scroll scroll-thumb flex-1">
+        <div className="space-y-2 w-full md:w-1/2 overflow-y-auto scroll-thumb flex-1">
           <span className="flex justify-between items-center">
             <h1 className="text-4xl font-bold">Data Transaksi</h1>
           </span>
@@ -75,7 +75,7 @@ const DetailLog = () => {
                 <strong>NIM:</strong> {data.nim}
               </h2>
               <h2 className="">
-                <strong>Profesi:</strong> {data.profesi}
+                <strong>Profesi:</strong> {data.data_user.profesi}
               </h2>
               <h2 className="">
                 <strong>Nomor Handphone:</strong> {data.nomor_hp}
