@@ -75,7 +75,7 @@ const DetailLog = () => {
                 <strong>NIM:</strong> {data.nim}
               </h2>
               <h2 className="">
-                <strong>Profesi:</strong> {data.data_user.profesi}
+                <strong>Profesi:</strong> {data.data_user?.profesi}
               </h2>
               <h2 className="">
                 <strong>Nomor Handphone:</strong> {data.nomor_hp}
