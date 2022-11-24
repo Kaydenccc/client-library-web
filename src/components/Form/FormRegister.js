@@ -40,6 +40,7 @@ const FormRegister = () => {
     setLoading(true);
     // check field
     if (isEmpty(email) || isEmpty(password) || isEmpty(username) || isEmpty(profesi) || isEmpty(nomor_hp) || isEmpty(alamat) || isEmpty(angkatan) || isEmpty(nim)) {
+      setLoading(false);
       return toast('Please fill in all fields.', {
         className: 'toast-failed',
         bodyClassName: 'toast-failed',
@@ -47,6 +48,7 @@ const FormRegister = () => {
     }
     // chech email
     if (!isEmail(email)) {
+      setLoading(false);
       return toast('Please enter a valid email address.', {
         className: 'toast-failed',
         bodyClassName: 'toast-failed',
@@ -54,6 +56,7 @@ const FormRegister = () => {
     }
     // check password
     if (isLength(password)) {
+      setLoading(false);
       return toast('Password must be at least 6 characters.', {
         className: 'toast-failed',
         bodyClassName: 'toast-failed',
@@ -61,6 +64,7 @@ const FormRegister = () => {
     }
     // check match password
     if (!isMatch(password, confirm_pass)) {
+      setLoading(false);
       return toast('Password is not match.', {
         className: 'toast-failed',
         bodyClassName: 'toast-failed',
@@ -68,11 +72,13 @@ const FormRegister = () => {
     }
     try {
       const res = await axios.post('https://library-perpus.herokuapp.com/api/auth/v1/register', data);
+      setLoading(false);
       toast(res.data.msg, {
         className: 'toast-success',
         bodyClassName: 'toast-success',
       });
     } catch (err) {
+      setLoading(false);
       return toast(err.response.data.msg, {
         className: 'toast-failed',
         bodyClassName: 'toast-failed',

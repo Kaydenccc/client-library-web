@@ -6,7 +6,6 @@ const Avatar = () => {
   const { closeSide } = useSelector((state) => state.route);
   const { user } = useSelector((state) => state.login);
   const navigate = useNavigate();
-  console.log('avatar', user);
   return (
     <div onClick={() => navigate('/detail-user/' + user.user?._id)} className={`w-full p-6 flex items-center gap-3 text-white cursor-pointer ${closeSide && 'visi-hidden'}`}>
       <div className="w-[80px] rounded-full overflow-hidden bg-slate-400">

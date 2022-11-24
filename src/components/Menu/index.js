@@ -18,7 +18,6 @@ const menuItemsForMember = [
 ];
 const Menu = () => {
   const { pathname } = useLocation();
-  console.log('PATH', pathname);
   const [active, setActive] = useState(pathname);
   const { closeSide } = useSelector((state) => state.route);
   const { user } = useSelector((state) => state.login);

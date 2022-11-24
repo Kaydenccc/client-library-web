@@ -12,9 +12,7 @@ const Reset = () => {
   const [password, setPassword] = useState('');
   const [cf_password, setCf_password] = useState('');
   const { token } = useParams();
-  console.log(token);
-  console.log(password);
-  console.log(cf_password);
+
   const handleResetPassword = async (e) => {
     e.preventDefault();
     setLoading(true);

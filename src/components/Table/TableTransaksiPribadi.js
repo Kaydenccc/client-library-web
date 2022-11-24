@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
   const { id } = useParams();
   // const navigate = useNavigate();
-  const [transaksi, setTransaksi] = useState([]);
+  const [transaksi, setTransaksi] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
     const getTransaksi = async () => {
@@ -16,7 +16,6 @@ const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
       try {
         const res = await axios.get('https://library-perpus.herokuapp.com/api/log/v1/log/books');
         let filterUsers = res.data?.data.filter((trans) => trans.data_user._id === id);
-        console.log('TRANSAKSI=', filterUsers);
         setTransaksi(filterUsers);
       } catch (err) {
         console.log(err);
@@ -50,22 +49,28 @@ const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
             </tr>
           </thead>
           <tbody className="w-full h-full flex flex-[1] flex-col">
-            {transaksi?.length > 0 ? (
-              transaksi.map((trans, i) => (
-                <tr key={i} className=" table-row row cursor-pointer">
-                  <td className="flex-[0.5]">{i + 1}</td>
-                  <td className="flex-[1]">{trans.kodeTransaksi}</td>
+            {transaksi ? (
+              transaksi?.length > 0 ? (
+                transaksi.map((trans, i) => (
+                  <tr key={i} className=" table-row row cursor-pointer">
+                    <td className="flex-[0.5]">{i + 1}</td>
+                    <td className="flex-[1]">{trans.kodeTransaksi}</td>
 
-                  <td className="flex-[0.8]">{trans.nama_peminjam}</td>
-                  <td className="flex-[1]">{trans.title}</td>
+                    <td className="flex-[0.8]">{trans.nama_peminjam}</td>
+                    <td className="flex-[1]">{trans.title}</td>
 
-                  <td className="flex-[1]">{new Date(trans.createdAt).toDateString()}</td>
-                  <td className="flex-[1]">{deadline(trans.updatedAt)}</td>
+                    <td className="flex-[1]">{new Date(trans.createdAt).toDateString()}</td>
+                    <td className="flex-[1]">{deadline(trans.updatedAt)}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td>Kosong</td>
                 </tr>
-              ))
+              )
             ) : (
               <tr>
-                <td>Kosong</td>
+                <td>Loading</td>
               </tr>
             )}
           </tbody>

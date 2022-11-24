@@ -56,7 +56,6 @@ const FormAddBook = () => {
     };
   }, [id]);
   const handleChange = (e) => {
-    console.log(e.target.files);
     if (e.target.files?.length > 0) {
       setData({ ...data, [e.target.name]: e.target.files[0] });
       const file = e.target.files[0];
@@ -79,6 +78,7 @@ const FormAddBook = () => {
     if (pathname === '/add-book') {
       // check field
       if (isEmpty(title) || isEmpty(category) || isEmpty(releaseAt) || isEmpty(jumlah_buku) || isEmpty(jumlah_halaman) || isEmpty(penerbit) || isEmpty(author) || isEmpty(description)) {
+        setLoading(false);
         return toast('Please fill in all fields.', {
           className: 'toast-failed',
           bodyClassName: 'toast-failed',

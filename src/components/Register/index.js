@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer.js';
 import FormRegister from '../Form/FormRegister.js';
 import FormUpdate from '../Form/FormUpdate.js';
 
-const Register = ({ text }) => {
+const Register = () => {
   const { pathname } = useLocation();
   const { userIdUpdate } = useParams();
   return (

@@ -46,7 +46,6 @@ const FormTransaksi = () => {
     }
 
     try {
-      console.log(data);
       await axios.post('https://library-perpus.herokuapp.com/api/log/v1/log/book', data);
       setLoading(false);
       toast('Transaksi berhasil ditambahkan', {

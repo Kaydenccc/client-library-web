@@ -122,7 +122,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
             </tr>
           </thead>
           <tbody className="w-auto md:w-full h-full flex flex-[1] flex-col  overflow-y-auto scroll-thumb ">
-            {transaksi.length > 0 ? (
+            {transaksi ? (
               transaksi.map((trans, i) => (
                 <tr key={i} className=" table-row row cursor-pointer">
                   <td onClick={() => user?.user?.admin && navigate('/detail-log/' + trans._id)} className="flex-[0.5]">

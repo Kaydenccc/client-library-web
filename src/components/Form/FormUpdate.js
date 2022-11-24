@@ -43,7 +43,6 @@ const FormUpdate = () => {
     const getUser = async () => {
       try {
         const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`);
-        // setUser(res.data.data);
         setData({ ...res.data.data });
       } catch (err) {
         return toast(err.response.data.msg, {
@@ -84,7 +83,7 @@ const FormUpdate = () => {
   };
 
   // PROTECT DATA PERSONALITY OF OTHER USER
-  if (!user?.user?.admin && userIdUpdate !== user.user?._id) {
+  if (!user?.user?.admin && userIdUpdate !== user?.user?._id) {
     return <Navigate to="/protect" replace />;
   }
 
