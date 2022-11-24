@@ -150,7 +150,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
           </thead>
           <tbody onScroll={handleScroll} className="w-full h-full min-h-[500px] md:h-auto flex flex-[1] flex-col scroll-smooth overflow-y-auto scroll-thumb ">
             {users ? (
-              users.map((user, i) => (
+              users?.map((user, i) => (
                 <tr key={i} className=" table-row row cursor-pointer">
                   <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[0.5]">
                     {i + 1}
