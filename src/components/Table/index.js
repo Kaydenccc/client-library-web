@@ -150,36 +150,38 @@ const Table = ({ tableName = 'Data Users', icon }) => {
           </thead>
           <tbody onScroll={handleScroll} className="w-full h-full min-h-[500px] md:h-auto flex flex-[1] flex-col scroll-smooth overflow-y-auto scroll-thumb ">
             {users ? (
-              users?.map((user, i) => (
-                <tr key={i} className=" table-row row cursor-pointer">
-                  <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[0.5]">
-                    {i + 1}
-                  </td>
-                  <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[1]">
-                    {user.nim}
-                  </td>
-                  <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[0.8]">
-                    {user.username}
-                  </td>
-                  <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[1]">
-                    {user.email}
-                  </td>
-                  <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[0.7]">
-                    {user.angkatan}
-                  </td>
-                  <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[0.5]">
-                    {user.profesi}
-                  </td>
-                  <td className="flex-[0.5] flex gap-2 items-center">
-                    <AiFillEdit onClick={() => navigate('/update-user/' + user._id)} className="text-blue-500 cursor-pointer" />
-                    <MdDelete onClick={() => deleteUser(user._id)} className="text-red-500 cursor-pointer" />
-                  </td>
+              users.length > 0 ? (
+                users.map((user, i) => (
+                  <tr key={i} className=" table-row row cursor-pointer">
+                    <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[0.5]">
+                      {i + 1}
+                    </td>
+                    <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[1]">
+                      {user.nim}
+                    </td>
+                    <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[0.8]">
+                      {user.username}
+                    </td>
+                    <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[1]">
+                      {user.email}
+                    </td>
+                    <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[0.7]">
+                      {user.angkatan}
+                    </td>
+                    <td onClick={() => navigate('/detail-user/' + user._id)} className="flex-[0.5]">
+                      {user.profesi}
+                    </td>
+                    <td className="flex-[0.5] flex gap-2 items-center">
+                      <AiFillEdit onClick={() => navigate('/update-user/' + user._id)} className="text-blue-500 cursor-pointer" />
+                      <MdDelete onClick={() => deleteUser(user._id)} className="text-red-500 cursor-pointer" />
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td>"Upss, Data not found"</td>
                 </tr>
-              ))
-            ) : message ? (
-              <tr>
-                <td>{message}</td>
-              </tr>
+              )
             ) : (
               <tr>
                 <td>Loading...</td>
