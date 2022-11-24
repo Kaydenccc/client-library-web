@@ -141,7 +141,7 @@ const Books = () => {
           <div className="flex md:w-fit w-full md:justify-between md:flex-row-reverse flex-col-reverse  gap-4 items-start md:items-center">
             <label htmlFor="filter" className="p-2 block w-fit">
               <strong className="tracking-wide">Filter:</strong>{' '}
-              <select ref={selectElemet} onChange={(e) => setFilter(e.target.value)} name="category" id="category" className="p-[5px] md:p-[10px] md:text-[16px] text-[12px] bg-slate-100 rounded-sm outline-input">
+              <select ref={selectElemet} onChange={(e) => setFilter(e.target.value)} name="category" id="category" className="p-[5px] md:p-[10px] bg-slate-100 rounded-sm outline-input">
                 <option value="All">Semua</option>
                 {categories.map((cate) => (
                   <option key={cate} value={cate}>
