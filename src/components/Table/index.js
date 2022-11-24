@@ -128,7 +128,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
                 setUsers([]);
                 setFilter(e.target.value);
               }}
-              className="border-2 md:text-[18] text-[12px] px-2 py-[3px]  p-2 "
+              className="border-2 px-2 py-[3px]  p-2 "
               name="filter"
               id="filter"
             >
