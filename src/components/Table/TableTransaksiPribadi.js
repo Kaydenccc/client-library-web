@@ -36,7 +36,7 @@ const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
           {tableName}
         </h3>
       </div>
-      <div className="flex-1 flex w-full whitespace-nowrap flex flex-col h-full bg-white p-2 md:p-6">
+      <div className="flex-1 flex w-full whitespace-nowrap flex flex-col h-full bg-white p-2 md:p-6 shadow-sm overflow-hidden overflow-x-auto scroll-smooth scroll-thumb">
         <table className="w-[1000px] h-[500px] md:h-auto md:w-full">
           <thead className="">
             <tr className="text-left flex  p-2 border-b">

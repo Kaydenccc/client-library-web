@@ -115,7 +115,7 @@ const Books = () => {
   };
 
   return (
-    <div onScroll={handleScroll} ref={booksHeight} className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-scroll scroll-smooth scroll-thumb">
+    <div onScroll={handleScroll} ref={booksHeight} className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-auto scroll-smooth scroll-thumb">
       <>
         <ToastContainer />
         <div className="flex justify-between items-start md:space-y-0 space-y-2 md:items-center md:flex-row flex-col text-black/70 mb-4">

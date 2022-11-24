@@ -140,7 +140,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
           </label>
         </div>
       ) : null}
-      <div className="flex-1 flex w-full whitespace-nowrap flex pb-6 md:pb-0 flex-col h-full bg-white p-2 md:p-6   shadow-sm overflow-hidden overflow-x-auto scroll-thumb">
+      <div className="flex-1 flex w-full whitespace-nowrap flex pb-6 md:pb-0 flex-col h-full bg-white p-2 md:p-6   shadow-sm overflow-hidden overflow-x-auto scroll-smooth scroll-thumb">
         <table className="w-[1150px] md:w-full">
           <thead className="   ">
             <tr className="text-left flex mr-[10px] p-2 border-b">
@@ -153,7 +153,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
               <th className="flex-[0.5]">Action</th>
             </tr>
           </thead>
-          <tbody onScroll={handleScroll} className="w-full h-full min-h-[500px] md:h-auto flex flex-[1] flex-col scroll-smooth overflow-y-auto scroll-thumb ">
+          <tbody onScroll={handleScroll} className="w-full h-full min-h-[500px] md:h-auto flex flex-[1] flex-col scroll-smooth overflow-y-auto scroll-thumb scroll-smooth">
             {users?.length > 0 ? (
               users.map((user, i) => (
                 <tr key={i} className=" table-row row cursor-pointer">

@@ -107,7 +107,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
           </div>
         </div>
       ) : null}
-      <div className="flex-1 flex w-full whitespace-nowrap flex flex-col h-full bg-white p-2 md:p-6 shadow-sm overflow-hidden overflow-x-auto scroll-thumb">
+      <div className="flex-1 flex w-full whitespace-nowrap flex flex-col h-full bg-white p-2 md:p-6 shadow-sm overflow-hidden overflow-x-auto scroll-smooth scroll-thumb">
         <table className="w-[1032px] h-[500px] md:h-auto md:w-full">
           <thead className="">
             <tr className="text-left flex mr-[10px] p-2 border-b">
@@ -121,7 +121,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
               {user?.user?.admin && <th className="flex-[0.5]">Action</th>}
             </tr>
           </thead>
-          <tbody className="w-auto md:w-full h-full flex flex-[1] flex-col  overflow-y-auto scroll-thumb ">
+          <tbody className="w-auto md:w-full h-full flex flex-[1] flex-col  overflow-y-auto scroll-smooth scroll-thumb ">
             {transaksi ? (
               transaksi.map((trans, i) => (
                 <tr key={i} className=" table-row row cursor-pointer">
