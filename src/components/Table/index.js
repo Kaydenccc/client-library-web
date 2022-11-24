@@ -11,7 +11,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [message, setMessage] = useState(null);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(null);
   const [filter, setFilter] = useState('all');
   const [userId, setUserId] = useState('');
   const [search, setSearch] = useState('');
@@ -19,12 +19,16 @@ const Table = ({ tableName = 'Data Users', icon }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const cancelToken = axios.CancelToken.source();
+    if (users === null) {
+      setUsers([]);
+    }
     const getUsers = async () => {
       try {
         if (filter === 'all') {
           const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/users/pagination?skip=${skip}`, {
             cancelToken: cancelToken.token,
           });
+
           setUsers([...users, ...res.data.data]);
           return;
         } else {
