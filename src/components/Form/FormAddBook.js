@@ -166,7 +166,7 @@ const FormAddBook = () => {
 
       {pathname === '/update-book/' + id ? (
         <form onSubmit={addBookHandle} className="px-6 py-11 bg-gradient-to-tr bg-white space-y-3 font-semibold text-[#3d3222]">
-          <h1 className="text-4xl text-gray-500 mb-6 pb-6 border-b font-bold">{pathname === '/daftar-buku' ? 'Add' : 'Update'} Book</h1>
+          <h1 className="text-4xl text-gray-500 mb-6 pb-6 border-b font-bold">{pathname === '/add-book' ? 'Add' : 'Update'} Book</h1>
           <div className="flex flex-col space-y-1  w-fit">
             <label htmlFor="image">Pilih Gambar</label>
             <label className="cursor-pointer relative" htmlFor="image">
