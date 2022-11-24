@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Auth from './Pages/auth/Auth';
 import ResetPage from './Pages/auth/ResetPage';
-import { getToken, getUserData, isAdmin, isLogin } from './features/loginSlice';
+import { getToken, getUserData, isLogin } from './features/loginSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
