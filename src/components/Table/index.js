@@ -19,10 +19,10 @@ const Table = ({ tableName = 'Data Users', icon }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const cancelToken = axios.CancelToken.source();
-    if (users === null) {
-      setUsers([]);
-    }
     const getUsers = async () => {
+      if (users === null) {
+        setUsers([]);
+      }
       try {
         if (filter === 'all') {
           const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/users/pagination?skip=${skip}`, {
@@ -110,9 +110,9 @@ const Table = ({ tableName = 'Data Users', icon }) => {
       </div>
       {pathname === '/data-users' ? (
         <div className="w-full flex flex-col overflow-hidden bg-white shadow-sm md:py-0 py-6">
-          <div className="flex px-[8px] md:px-4  justify-between md:flex-row flex-col items-center">
+          <div className="flex px-[8px] md:px-4  justify-between md:flex-row  flex-col items-center">
             {icon}
-            <button onClick={() => navigate('/register')} className="px-4 mt-4 self-start md:text-[16px] text-[14px] mr-4 h-fit bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-md shadow-sm font-medium">
+            <button onClick={() => navigate('/register')} className="px-4 mt-4 self-start md:self-center md:text-[16px] text-[14px] mr-4 h-fit bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-md shadow-sm font-medium">
               Add User
             </button>
           </div>
@@ -123,7 +123,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
                 setUsers([]);
                 setFilter(e.target.value);
               }}
-              className="border-2 md:text-[16] text-[12px] px-2 py-[3px]  p-2 "
+              className="border-2 md:text-[18] text-[12px] px-2 py-[3px]  p-2 "
               name="filter"
               id="filter"
             >

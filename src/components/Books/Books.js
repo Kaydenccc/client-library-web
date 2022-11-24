@@ -4,6 +4,7 @@ import { GiWhiteBook } from 'react-icons/gi';
 import { ImBooks } from 'react-icons/im';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import { getTotalBooks } from '../../features/totalSlice';
@@ -25,7 +26,8 @@ const Books = () => {
   const [perPage, setPerPage] = useState(10);
 
   const [isEnd, setIsEnd] = useState(false);
-
+  const { user } = useSelector((state) => state.login);
+  const navigate = useNavigate();
   const booksHeight = useRef();
 
   useEffect(() => {
@@ -148,6 +150,11 @@ const Books = () => {
                 ))}
               </select>
             </label>
+            {user?.user?.admin && (
+              <button onClick={() => navigate('/add-book')} className="px-4 mt-4 self-start md:self-center md:text-[16px] text-[14px] mr-4 h-fit bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-md shadow-sm font-medium">
+                Add Book
+              </button>
+            )}
           </div>
         </div>
         <div className={`grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 gap-y-2 overflow-hidden`}>

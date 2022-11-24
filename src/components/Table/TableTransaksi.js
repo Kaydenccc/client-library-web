@@ -93,7 +93,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
           <div className="flex px-4 md:flex-row flex-col justify-between items-center">
             {icon}
             {user?.user?.admin ? (
-              <button onClick={() => navigate('/add-log')} className="px-4 mr-4 h-fit text-[14px] self-start md:mt-0 mt-6 md:text-[16px] bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-md shadow-sm font-medium">
+              <button onClick={() => navigate('/add-log')} className="px-4 mr-4 h-fit text-[14px] self-start md:self-center md:mt-0 mt-6 md:text-[16px] bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-md shadow-sm font-medium">
                 Tambah Transaksi
               </button>
             ) : (
