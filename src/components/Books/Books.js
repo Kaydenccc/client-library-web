@@ -176,9 +176,17 @@ const Books = () => {
           </div>
         </div>
         <div className={`grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 gap-y-2 overflow-hidden`}>
-          {books?.map((buku) => (
-            <BookMember deleteBook={deleteBook} key={buku._id} {...buku} />
-          ))}
+          {books?.length > 0 ? (
+            books.map((buku) => <BookMember deleteBook={deleteBook} key={buku._id} {...buku} />)
+          ) : message ? (
+            <div>
+              <p>"Upss, Data not found"</p>
+            </div>
+          ) : (
+            <div>
+              <p>Loading...</p>
+            </div>
+          )}
         </div>
         <div className="text-center w-full p-2">{isEnd ? <p>No more book!</p> : <p>Loading..</p>}</div>
       </div>
