@@ -114,8 +114,8 @@ const Table = ({ tableName = 'Data Users', icon }) => {
         </form>
       </div>
       {pathname === '/data-users' ? (
-        <div className="w-full flex flex-col overflow-hidden bg-white shadow-sm md:py-0 py-6">
-          <div className="flex px-[8px] md:px-4  justify-between md:flex-row  flex-col items-center">
+        <div className="w-full px-[8px] md:px-4  flex flex-col overflow-hidden bg-white shadow-sm md:py-0 py-6">
+          <div className="flex justify-between md:flex-row  flex-col items-center">
             {icon}
             <button onClick={() => navigate('/register')} className="px-4 mt-4 self-start md:self-center md:text-[16px] text-[14px] mr-4 h-fit bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-md shadow-sm font-medium">
               Add User
