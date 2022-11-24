@@ -16,7 +16,7 @@ const Avatar = () => {
           dispatch(setCloseSide());
           navigate('/detail-user/' + user.user?._id);
         }}
-        className={`w-full p-6 flex block md:hidden items-center gap-3 text-white cursor-pointer ${closeSide && 'visi-hidden'}`}
+        className={`w-full p-6 flex md:hidden items-center gap-3 text-white cursor-pointer ${closeSide && 'visi-hidden'}`}
       >
         <div className="w-[80px] rounded-full overflow-hidden bg-slate-400">
           <img className="w-full h-full object-cover" src={user.user?.image} alt={user.user?.username} />
@@ -33,7 +33,7 @@ const Avatar = () => {
         onClick={() => {
           navigate('/detail-user/' + user.user?._id);
         }}
-        className={`w-full p-6 hidden md:block flex items-center gap-3 text-white cursor-pointer ${closeSide && 'visi-hidden'}`}
+        className={`w-full p-6 hidden md:flex items-center gap-3 text-white cursor-pointer ${closeSide && 'visi-hidden'}`}
       >
         <div className="w-[80px] rounded-full overflow-hidden bg-slate-400">
           <img className="w-full h-full object-cover" src={user.user?.image} alt={user.user?.username} />
