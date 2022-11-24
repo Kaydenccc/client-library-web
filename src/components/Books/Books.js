@@ -138,7 +138,7 @@ const Books = () => {
       <div className="flex flex-col h-auto w-full bg-white pb-6 px-2 md:px-6 shadow-sm">
         <div className="flex md:flex-row flex-col justify-between items-center py-4 my-4 border-b-2">
           <Card total={totalBooks} className="flex items-center  gap-4 text-left justify-between w-fit p-4 " text="Total buku" icon={<GiWhiteBook className="text-6xl text-white" />} />
-          <div className="flex md:justify-between md:flex-row flex-col flex-row-reverse gap-4 items-start md:items-center">
+          <div className="flex md:w-fit w-full md:justify-between md:flex-row-reverse flex-col-reverse  gap-4 items-start md:items-center">
             <label htmlFor="filter" className="p-2 block w-fit">
               <strong className="tracking-wide">Filter:</strong>{' '}
               <select ref={selectElemet} onChange={(e) => setFilter(e.target.value)} name="category" id="category" className="p-[5px] md:p-[10px] md:text-[16px] text-[12px] bg-slate-100 rounded-sm outline-input">
