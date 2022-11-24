@@ -46,9 +46,7 @@ const Books = () => {
           setBooks([...books, ...res.data.data]);
         } else {
           let filterBooks = res.data.data.filter((user) => user.category === filter);
-          if (filterBooks.length === 0) {
-            return setIsEnd(true);
-          }
+          setIsEnd(true);
           setBooks(filterBooks);
         }
       } catch (err) {
