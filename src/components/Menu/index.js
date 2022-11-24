@@ -18,7 +18,7 @@ const menuItemsForMember = [
   { text: 'Daftar Buku', route: '/daftar-buku', icon: <ImBooks className="inline-block text-2xl" /> },
   { text: 'Riwayat Transaksi', route: '/riwayat-transaksi', icon: <MdLibraryBooks className="inline-block text-2xl" /> },
 ];
-const Menu = () => {
+const Menu = ({ mobile }) => {
   const { pathname } = useLocation();
   const [active, setActive] = useState(pathname);
   const { closeSide } = useSelector((state) => state.route);
@@ -29,31 +29,56 @@ const Menu = () => {
     setActive(pathname);
   }, [pathname]);
   return (
-    <ul className="text-white/70 ">
-      {user?.user?.admin
-        ? menuItems.map((menu) => (
-            <Link
-              to={menu.route}
-              key={menu.text}
-              className={`${active === menu.route ? activeStyle : ''} text-lg ${closeSide ? 'justify-center' : 'px-6'} cursor-pointer flex  items-center gap-6 hover:text-white hover:bg-slate-800 py-4 w-full `}
-              onClick={() => dispatch(setCloseSide())}
-            >
-              {menu.icon}
-              {!closeSide && menu.text}
-            </Link>
-          ))
-        : menuItemsForMember.map((menu) => (
-            <Link
-              to={menu.route}
-              key={menu.text}
-              className={`${active === menu.route ? activeStyle : ''} text-lg ${closeSide ? 'justify-center' : 'px-6'} cursor-pointer flex  items-center gap-6 hover:text-white hover:bg-slate-800 py-4 w-full `}
-              onClick={() => dispatch(setCloseSide())}
-            >
-              {menu.icon}
-              {!closeSide && menu.text}
-            </Link>
-          ))}
-    </ul>
+    <>
+      <ul className="md:hidden block text-white/70 ">
+        {user?.user?.admin
+          ? menuItems.map((menu) => (
+              <Link
+                to={menu.route}
+                key={menu.text}
+                className={`${active === menu.route ? activeStyle : ''} text-lg ${closeSide ? 'justify-center' : 'px-6'} cursor-pointer flex  items-center gap-6 hover:text-white hover:bg-slate-800 py-4 w-full `}
+                onClick={() => dispatch(setCloseSide())}
+              >
+                {menu.icon}
+                {!closeSide && menu.text}
+              </Link>
+            ))
+          : menuItemsForMember.map((menu) => (
+              <Link
+                to={menu.route}
+                key={menu.text}
+                className={`${active === menu.route ? activeStyle : ''} text-lg ${closeSide ? 'justify-center' : 'px-6'} cursor-pointer flex  items-center gap-6 hover:text-white hover:bg-slate-800 py-4 w-full `}
+                onClick={() => dispatch(setCloseSide())}
+              >
+                {menu.icon}
+                {!closeSide && menu.text}
+              </Link>
+            ))}
+      </ul>
+      <ul className="md:block hidden text-white/70 ">
+        {user?.user?.admin
+          ? menuItems.map((menu) => (
+              <Link
+                to={menu.route}
+                key={menu.text}
+                className={`${active === menu.route ? activeStyle : ''} text-lg ${closeSide ? 'justify-center' : 'px-6'} cursor-pointer flex  items-center gap-6 hover:text-white hover:bg-slate-800 py-4 w-full `}
+              >
+                {menu.icon}
+                {!closeSide && menu.text}
+              </Link>
+            ))
+          : menuItemsForMember.map((menu) => (
+              <Link
+                to={menu.route}
+                key={menu.text}
+                className={`${active === menu.route ? activeStyle : ''} text-lg ${closeSide ? 'justify-center' : 'px-6'} cursor-pointer flex  items-center gap-6 hover:text-white hover:bg-slate-800 py-4 w-full `}
+              >
+                {menu.icon}
+                {!closeSide && menu.text}
+              </Link>
+            ))}
+      </ul>
+    </>
   );
 };
 
