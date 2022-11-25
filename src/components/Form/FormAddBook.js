@@ -26,7 +26,6 @@ const inisialState = {
 const FormAddBook = () => {
   const { pathname } = useLocation();
   const { id } = useParams();
-  const [idParam, setIdParam] = useParams('');
   const { user } = useSelector((state) => state.login);
   const [loading, setLoading] = useState(null);
   const [previewAvatar, setPreviewAvatar] = useState(null);
@@ -37,7 +36,6 @@ const FormAddBook = () => {
   // GET DATA BOOK BY ID PARAM
   useEffect(() => {
     const cancelToken = axios.CancelToken.source();
-    setIdParam(id);
     const getById = async () => {
       try {
         const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/book/${id}`, {
@@ -56,7 +54,7 @@ const FormAddBook = () => {
     return () => {
       cancelToken.cancel();
     };
-  }, [id, setIdParam]);
+  }, [id]);
   const handleChange = (e) => {
     if (e.target.files?.length > 0) {
       setData({ ...data, [e.target.name]: e.target.files[0] });
@@ -157,11 +155,9 @@ const FormAddBook = () => {
 
     handleReset();
   };
-  console.log('PREVIEW: ', previewAvatar);
-  console.log('id: ', id);
-  console.log('id pram: ', idParam);
+
   // PROTECT DATA PERSONALITY OF OTHER USER
-  if (!user?.user?.admin && idParam !== user?.user?._id) {
+  if (!user?.user?.admin) {
     return <Navigate to="/protect" replace />;
   }
   return (
