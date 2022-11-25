@@ -28,16 +28,16 @@ const DetailUser = () => {
         }
       }
     };
+    // PROTECT DATA PERSONALITY OF OTHER USER
+    if (!user?.user?.admin && id !== user?.user?._id) {
+      return <Navigate to="/protect" replace />;
+    }
     getUsers();
     return () => {
       cancelToken.cancel();
     };
-  }, [id]);
+  }, [id, user?.user?.admin, user?.user?._id]);
 
-  // PROTECT DATA PERSONALITY OF OTHER USER
-  if (!user?.user?.admin && id !== user?.user?._id) {
-    return <Navigate to="/protect" replace />;
-  }
   return (
     <div className="h-full flex-col flex bg-slate-200 py-8 px-[8px] md:px-6 overflow-y-auto">
       <div className="w-full gap-4 pb-11 bg-gradient-to-tr rounded-tl-[5rem] bg-white font-semibold text-[#3d3222] ">
