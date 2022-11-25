@@ -22,7 +22,7 @@ const PopModal = ({ setIsDelete, text, loading, setOpenPop }) => {
           </div>
         </div>
       ) : (
-        <h4>Loading</h4>
+        <h4 className="font-bold tracking-widest">Loading...</h4>
       )}
     </div>
   );
