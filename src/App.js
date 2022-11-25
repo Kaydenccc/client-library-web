@@ -56,6 +56,7 @@ function App() {
         });
         dispatch(getUserData(res.data));
       };
+      console.log('first');
       getUser();
     }
   }, [dispatch, accessToken]);

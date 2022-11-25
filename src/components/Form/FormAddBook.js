@@ -171,7 +171,7 @@ const FormAddBook = () => {
             <label htmlFor="image">Pilih Gambar</label>
             <label className="cursor-pointer relative" htmlFor="image">
               <BiImageAdd className="absolute top-0 right-[-10px] font-extrabold text-2xl text-yellow-500" />
-              <img src={image} alt="book file upload" className="w-[100px] h-auto " />
+              <img src={previewAvatar ? previewAvatar : image} alt="book file upload" className="w-[100px] h-auto " />
             </label>
             <input onChange={handleChange} className="p-[10px] hidden bg-slate-100 rounded-sm outline-input" type="file" id="image" name="image" />
           </div>
