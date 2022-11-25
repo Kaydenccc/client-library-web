@@ -44,7 +44,7 @@ const RiwayatTransaksi = () => {
       <div className="flex flex-col h-full w-full ">
         <TableTransaksi
           tableName="Table Transaksi"
-          icon={<Card total={totalTransaksi} className="flex items-center gap-4 text-left justify-between w-fit p-4 mt-4" text="Total User" icon={<IoIosBookmarks className="text-6xl text-white" />} />}
+          icon={<Card total={totalTransaksi} className="flex items-center gap-4 text-left justify-between w-fit p-4 mt-4" text="Total Transaksi" icon={<IoIosBookmarks className="text-6xl text-white" />} />}
         />
       </div>
       <Footer />

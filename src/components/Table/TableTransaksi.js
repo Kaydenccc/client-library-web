@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import PopModal from '../PopModal/PopModal';
 
 const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   const { pathname } = useLocation();
@@ -72,7 +73,8 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     return new Date(Math.ceil(new Date(time).getTime() + 1000 * 3600 * 24 * 7)).toDateString();
   };
   return (
-    <div className="h-full flex flex-col overflow-hidden">
+    <div className="h-full flex flex-col overflow-hidden relative">
+      <PopModal text="Are you sure to delete this ?" />
       <div className="w-full md:flex-row flex-col flex items-start md:items-center justify-between mb-3">
         <h3 className="text-lg font-semibold flex justify-start gap-2 items-center ">
           <IoIosPeople className="text-2xl" />
