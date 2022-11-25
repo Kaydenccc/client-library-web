@@ -24,9 +24,10 @@ import NotFound from './Pages/NotFound/NotFound';
 axios.defaults.withCredentials = true;
 
 function App() {
-  const { isLoggedin } = useSelector((state) => state.login);
+  const { isLoggedin, user } = useSelector((state) => state.login);
   const [accessToken, setAccessToke] = useState('');
   const dispatch = useDispatch();
+  console.log(user);
   useEffect(() => {
     const _appSigning = localStorage.getItem('_appSigning');
 
