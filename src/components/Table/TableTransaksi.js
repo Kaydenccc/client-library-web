@@ -15,7 +15,9 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   const [message, setMessage] = useState(null);
   const [transaksi, setTransaksi] = useState(null);
   const [userId, setUserId] = useState('');
+  const [id, setId] = useState('');
   const [isDelete, setIsDelete] = useState(false);
+  const [openPop, setOpenPop] = useState(false);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
@@ -45,20 +47,22 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   }, [userId, dispatch]);
 
   const deleteLog = async (id) => {
-    if (isDelete) {
-      setLoading(true);
-      try {
-        await axios.delete(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`);
-        setIsDelete(false);
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        console.log(err);
-      }
-      setUserId(id);
+    setLoading(true);
+    try {
+      await axios.delete(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`);
+      setIsDelete(false);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
     }
+    setUserId(id);
   };
-
+  useEffect(() => {
+    if (isDelete) {
+      deleteLog(id);
+    }
+  }, [id, isDelete]);
   const searchUser = async (e) => {
     e.preventDefault();
     setTransaksi('');
@@ -82,7 +86,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   };
   return (
     <div className="h-full flex flex-col overflow-hidden">
-      {isDelete ? <PopModal loading={loading} setIsDelete={setIsDelete} text="Are you sure to delete this ?" /> : null}
+      {openPop ? <PopModal loading={loading} setIsDelete={setIsDelete} text="Are you sure to delete this ?" /> : null}
       <div className="w-full md:flex-row flex-col flex items-start md:items-center justify-between mb-3">
         <h3 className="text-lg font-semibold flex justify-start gap-2 items-center ">
           <IoIosPeople className="text-2xl" />
@@ -159,7 +163,13 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
                   {user?.user?.admin && (
                     <td className="flex-[0.5] flex gap-2 items-center">
                       <AiFillEdit onClick={() => navigate('/update-log/' + trans._id)} className="text-blue-500 cursor-pointer" />
-                      <MdDelete onClick={() => deleteLog(trans._id)} className="text-red-500 cursor-pointer" />
+                      <MdDelete
+                        onClick={() => {
+                          setId(trans._id);
+                          setOpenPop(true);
+                        }}
+                        className="text-red-500 cursor-pointer"
+                      />
                     </td>
                   )}
                 </tr>
