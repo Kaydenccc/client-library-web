@@ -7,12 +7,14 @@ import { useDispatch } from 'react-redux';
 import { getUserData, isLogin } from '../../features/loginSlice';
 
 const ACCET_ADMIN = {
-  email: 'admin@gmail.com',
-  password: 'admin99',
-  admin: true,
-  username: 'Admin',
-  profesi: 'Admin',
-  image: 'https://res.cloudinary.com/diqsivizd/image/upload/v1668267193/LIBRARY/user_image/pngegg_qhoull.png',
+  user: {
+    email: 'admin@gmail.com',
+    password: 'admin99',
+    admin: true,
+    username: 'Admin',
+    profesi: 'Admin',
+    image: 'https://res.cloudinary.com/diqsivizd/image/upload/v1668267193/LIBRARY/user_image/pngegg_qhoull.png',
+  },
 };
 const inisialState = {
   email: '',
