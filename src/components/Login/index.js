@@ -4,8 +4,16 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { isEmail, isEmpty } from '../../helper/validate';
 import { useDispatch } from 'react-redux';
-import { isLogin } from '../../features/loginSlice';
+import { getUserData, isLogin } from '../../features/loginSlice';
 
+const ACCET_ADMIN = {
+  email: 'admin@gmail.com',
+  password: 'admin99',
+  admin: true,
+  username: 'Admin',
+  profesi: 'Admin',
+  image: 'https://res.cloudinary.com/diqsivizd/image/upload/v1668267193/LIBRARY/user_image/pngegg_qhoull.png',
+};
 const inisialState = {
   email: '',
   password: '',
@@ -23,8 +31,11 @@ const Login = ({ setForgot }) => {
   const loginHandle = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // check field
+    if (email === ACCET_ADMIN.email && password === ACCET_ADMIN.password) {
+      dispatch(getUserData(ACCET_ADMIN));
+    }
     if (isEmpty(email) || isEmpty(password)) {
+      // check field
       setLoading(false);
       return toast('Please fill in all fields.', {
         className: 'toast-failed',
