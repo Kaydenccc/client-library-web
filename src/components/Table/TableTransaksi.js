@@ -73,7 +73,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     return new Date(Math.ceil(new Date(time).getTime() + 1000 * 3600 * 24 * 7)).toDateString();
   };
   return (
-    <div className="h-full flex flex-col overflow-hidden relative">
+    <div className="h-full flex flex-col overflow-hidden">
       <PopModal text="Are you sure to delete this ?" />
       <div className="w-full md:flex-row flex-col flex items-start md:items-center justify-between mb-3">
         <h3 className="text-lg font-semibold flex justify-start gap-2 items-center ">
