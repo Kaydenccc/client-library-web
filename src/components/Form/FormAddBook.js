@@ -155,7 +155,7 @@ const FormAddBook = () => {
 
     handleReset();
   };
-
+  console.log('PREVIEW: ', previewAvatar);
   // PROTECT DATA PERSONALITY OF OTHER USER
   if (!user?.user?.admin && id !== user?.user?._id) {
     return <Navigate to="/protect" replace />;
