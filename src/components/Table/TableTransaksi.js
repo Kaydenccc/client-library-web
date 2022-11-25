@@ -51,8 +51,10 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     try {
       await axios.delete(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`);
       setIsDelete(false);
+      setOpenPop(false);
       setLoading(false);
     } catch (err) {
+      setOpenPop(false);
       setLoading(false);
       console.log(err);
     }
@@ -69,7 +71,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     try {
       const res = await axios.get(`https://library-perpus.herokuapp.com/api/log/v1/log/search/${search}`);
       setMessage(null);
-      console.log(res.data.data);
+
       setTransaksi(res.data.log);
     } catch (err) {
       console.log(err);
@@ -86,7 +88,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   };
   return (
     <div className="h-full flex flex-col overflow-hidden">
-      {openPop ? <PopModal loading={loading} setIsDelete={setIsDelete} text="Are you sure to delete this ?" /> : null}
+      {openPop ? <PopModal loading={loading} setIsDelete={setIsDelete} setOpenPop={setOpenPop} text="Are you sure to delete this ?" /> : null}
       <div className="w-full md:flex-row flex-col flex items-start md:items-center justify-between mb-3">
         <h3 className="text-lg font-semibold flex justify-start gap-2 items-center ">
           <IoIosPeople className="text-2xl" />
