@@ -157,6 +157,8 @@ const FormAddBook = () => {
   };
 
   // PROTECT DATA PERSONALITY OF OTHER USER
+  console.log(user?.user?.admin);
+  console.log(id);
   if (!user?.user?.admin) {
     return <Navigate to="/protect" replace />;
   }
