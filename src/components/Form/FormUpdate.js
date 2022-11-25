@@ -30,7 +30,13 @@ const FormUpdate = () => {
   const { password, image } = data;
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    if (e.target.files?.length > 0) {
+      setData({ ...data, [e.target.name]: e.target.files[0] });
+      const file = e.target.files[0];
+      setPreviewAvatar(URL.createObjectURL(file));
+    } else {
+      setData({ ...data, [e.target.name]: e.target.value });
+    }
   };
   const handleReset = () => {
     Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
