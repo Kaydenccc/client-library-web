@@ -2,10 +2,10 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Auth from './Pages/auth/Auth';
 import ResetPage from './Pages/auth/ResetPage';
-import { getToken, getUserData, isLogin } from './features/loginSlice';
+import { getUserData, isLogin } from './features/loginSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Home from './Pages/Home';
 import DashboardMember from './components/DasboardMember';
@@ -24,7 +24,8 @@ import NotFound from './Pages/NotFound/NotFound';
 axios.defaults.withCredentials = true;
 
 function App() {
-  const { accessToken, isLoggedin } = useSelector((state) => state.login);
+  const { isLoggedin } = useSelector((state) => state.login);
+  const [accessToken, setAccessToke] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     const _appSigning = localStorage.getItem('_appSigning');
@@ -35,7 +36,7 @@ function App() {
           const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/access', {
             withCredentials: true,
           });
-          dispatch(getToken(res.data.ac_token));
+          setAccessToke(res.data.ac_token);
         } catch (err) {
           console.log(err);
         }
