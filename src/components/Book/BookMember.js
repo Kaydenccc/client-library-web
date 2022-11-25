@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const BookMember = ({ _id, image, title, category, releaseAt, deleteBook }) => {
+const BookMember = ({ _id, image, title, category, releaseAt, setId, setOpenPop }) => {
   const { user } = useSelector((state) => state.login);
   const navigate = useNavigate();
 
@@ -24,7 +24,13 @@ const BookMember = ({ _id, image, title, category, releaseAt, deleteBook }) => {
       <div className="flex-1 flex items-end absolute left-0 bottom-0 p-2">
         {!user?.user?.admin ? null : (
           <p className="">
-            <span onClick={() => deleteBook(_id)} className="text-red-400 text-[10px] md:text-[16px] font-extrabold">
+            <span
+              onClick={() => {
+                setId(_id);
+                setOpenPop(true);
+              }}
+              className="text-red-400 text-[10px] md:text-[16px] font-extrabold"
+            >
               delete
             </span>{' '}
             /{' '}

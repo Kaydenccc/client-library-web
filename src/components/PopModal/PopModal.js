@@ -6,7 +6,7 @@ const PopModal = ({ setIsDelete, text, loading, setOpenPop }) => {
       {!loading ? (
         <div className=" bg-white/90 py-4 p-8 rounded-md text-center flex flex-col gap-4 justify-center items-center ">
           <p>{text}</p>
-          <div>
+          <div className="flex gap-4 items-center">
             <button className="font-semibold text-center bg-red-600 text-white py-2 px-6 rounded-sm shadow-md cursor-pointer" onClick={() => setIsDelete(true)}>
               Delete
             </button>

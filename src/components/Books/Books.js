@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { getTotalBooks } from '../../features/totalSlice';
 import BookMember from '../Book/BookMember';
 import Card from '../Card';
+import PopModal from '../PopModal/PopModal';
 
 // CATEGORY
 const categories = ['Umum', 'Seni & Musik', 'Biografi', 'Bisnis', 'Komik', 'Komputer & Teknologi', 'Pendidikan & Referensi', 'Cooking', 'Hiburan', 'Sejarah', 'Self-Help', 'Agama', 'Medis', 'Sains'];
@@ -29,6 +30,11 @@ const Books = () => {
   const { user } = useSelector((state) => state.login);
   const navigate = useNavigate();
   const booksHeight = useRef();
+
+  const [id, setId] = useState('');
+  const [isDelete, setIsDelete] = useState(false);
+  const [openPop, setOpenPop] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const cancelToken = axios.CancelToken.source();
@@ -69,14 +75,20 @@ const Books = () => {
 
   // DELETE BOOK
   const deleteBook = async (id) => {
+    setLoading(true);
     try {
       await axios.delete(`https://library-perpus.herokuapp.com/api/books/v1/delete/book/${id}`);
+      setIsDelete(false);
+      setOpenPop(false);
+      setLoading(false);
       toast('Delete Success', {
         className: 'toast-success',
         bodyClassName: 'toast-success',
       });
       setBookId(id);
     } catch (err) {
+      setOpenPop(false);
+      setLoading(false);
       toast('Delete Failed', {
         className: 'toast-failed',
         bodyClassName: 'toast-failed',
@@ -84,6 +96,12 @@ const Books = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (isDelete) {
+      deleteBook(id);
+    }
+  }, [id, isDelete]);
   // SEARCH BOOK
   const searchBook = async (e) => {
     e.preventDefault();
@@ -115,6 +133,7 @@ const Books = () => {
 
   return (
     <div onScroll={handleScroll} ref={booksHeight} className="flex-[1] flex-col flex bg-slate-200 pt-8 pb-2 px-[8px] md:px-6 overflow-y-auto scroll-smooth scroll-thumb-sm md:scroll-thumb">
+      {openPop ? <PopModal loading={loading} setIsDelete={setIsDelete} setOpenPop={setOpenPop} text="Are you sure to delete this ?" /> : null}
       <>
         <ToastContainer />
         <div className="flex justify-between items-start md:space-y-0 space-y-2 md:items-center md:flex-row flex-col text-black/70 mb-4">
@@ -174,7 +193,7 @@ const Books = () => {
             )}
           </div>
         </div>
-        <div className={`grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 gap-y-2 overflow-hidden`}>{books?.length > 0 ? books.map((buku) => <BookMember deleteBook={deleteBook} key={buku._id} {...buku} />) : null}</div>
+        <div className={`grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 gap-y-2 overflow-hidden`}>{books?.length > 0 ? books.map((buku) => <BookMember setId={setId} setOpenPop={setOpenPop} key={buku._id} {...buku} />) : null}</div>
         <div className="text-center w-full p-2">{isEnd ? <p>No more book!</p> : <p>Loading..</p>}</div>
       </div>
     </div>

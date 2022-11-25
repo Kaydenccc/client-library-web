@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import PopModal from '../PopModal/PopModal';
 
 const Table = ({ tableName = 'Data Users', icon }) => {
   const { pathname } = useLocation();
@@ -17,6 +18,11 @@ const Table = ({ tableName = 'Data Users', icon }) => {
   const [search, setSearch] = useState('');
   const [skip, setSkip] = useState(0);
   const dispatch = useDispatch();
+
+  const [id, setId] = useState('');
+  const [isDelete, setIsDelete] = useState(false);
+  const [openPop, setOpenPop] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const cancelToken = axios.CancelToken.source();
     const getUsers = async () => {
@@ -69,14 +75,24 @@ const Table = ({ tableName = 'Data Users', icon }) => {
   }, [userId, dispatch, filter]);
 
   const deleteUser = async (id) => {
+    setLoading(true);
     try {
       await axios.delete(`https://library-perpus.herokuapp.com/api/auth/v1/user/${id}`);
+      setIsDelete(false);
+      setOpenPop(false);
+      setLoading(false);
     } catch (err) {
+      setOpenPop(false);
+      setLoading(false);
       console.log(err);
     }
     setUserId(id);
   };
-
+  useEffect(() => {
+    if (isDelete) {
+      deleteUser(id);
+    }
+  }, [id, isDelete]);
   const searchUser = async (e) => {
     e.preventDefault();
     setUsers('');
@@ -102,6 +118,8 @@ const Table = ({ tableName = 'Data Users', icon }) => {
   };
   return (
     <div className="h-full flex flex-col">
+      {openPop ? <PopModal loading={loading} setIsDelete={setIsDelete} setOpenPop={setOpenPop} text="Are you sure to delete this ?" /> : null}
+
       <div className="w-full flex md:flex-row flex-col items-start md:items-center justify-between mb-3">
         <h3 className="text-lg font-semibold flex justify-start gap-2 items-center ">
           <IoIosPeople className="text-2xl" />
@@ -177,7 +195,13 @@ const Table = ({ tableName = 'Data Users', icon }) => {
                   </td>
                   <td className="flex-[0.5] flex gap-2 items-center">
                     <AiFillEdit onClick={() => navigate('/update-user/' + user._id)} className="text-blue-500 cursor-pointer" />
-                    <MdDelete onClick={() => deleteUser(user._id)} className="text-red-500 cursor-pointer" />
+                    <MdDelete
+                      onClick={() => {
+                        setId(user._id);
+                        setOpenPop(true);
+                      }}
+                      className="text-red-500 cursor-pointer"
+                    />
                   </td>
                 </tr>
               ))
