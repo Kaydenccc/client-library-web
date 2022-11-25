@@ -22,7 +22,7 @@ import DetailUser from './components/DetailUser/DetailUser';
 import Protect from './components/Protect/Protect';
 import NotFound from './Pages/NotFound/NotFound';
 axios.defaults.withCredentials = true;
-
+export let admin = false;
 function App() {
   const { accessToken, isLoggedin } = useSelector((state) => state.login);
   const dispatch = useDispatch();
@@ -54,6 +54,7 @@ function App() {
             Authorization: accessToken,
           },
         });
+        admin = res.data?.user?.admin;
         dispatch(getUserData(res.data));
       };
       getUser();

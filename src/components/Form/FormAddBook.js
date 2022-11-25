@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { admin } from '../../App';
 // CATEFORIES
 const categories = ['Umum', 'Seni & Musik', 'Biografi', 'Bisnis', 'Komik', 'Komputer & Teknologi', 'Pendidikan & Referensi', 'Cooking', 'Hiburan', 'Sejarah', 'Self-Help', 'Agama', 'Medis', 'Sains'];
 const inisialState = {
@@ -158,7 +159,7 @@ const FormAddBook = () => {
 
   // PROTECT DATA PERSONALITY OF OTHER USER
   console.log(user?.user?.admin);
-  console.log(id);
+  console.log(admin);
   if (!user?.user?.admin) {
     return <Navigate to="/protect" replace />;
   }
