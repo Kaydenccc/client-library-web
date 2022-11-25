@@ -18,7 +18,7 @@ const Books = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState(null);
-  const [bookId, setBookId] = useState('');
+  const [reload, serReload] = useState(false);
   const [books, setBooks] = useState([]);
   const selectElemet = useRef();
   const [filter, setFilter] = useState('All');
@@ -81,11 +81,11 @@ const Books = () => {
       setIsDelete(false);
       setOpenPop(false);
       setLoading(false);
+      serReload(!reload);
       toast('Delete Success', {
         className: 'toast-success',
         bodyClassName: 'toast-success',
       });
-      setBookId(id);
     } catch (err) {
       setOpenPop(false);
       setLoading(false);
