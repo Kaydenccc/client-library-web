@@ -244,8 +244,8 @@ const FormAddBook = () => {
               placeholder="Masukan deskripsi"
               name="description"
               id="description"
-              cols="3"
-              rows="3"
+              cols="10"
+              rows="10"
               required
             ></textarea>
           </div>

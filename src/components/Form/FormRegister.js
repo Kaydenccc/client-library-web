@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
+import { BiImageAdd } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -14,25 +15,34 @@ const inisialState = {
   nomor_hp: '',
   alamat: '',
   password: '',
+  image: null,
 };
 const FormRegister = () => {
   const { user } = useSelector((state) => state.login);
   const [loading, setLoading] = useState(null);
   const [data, setData] = useState(inisialState);
+  const [previewAvatar, setPreviewAvatar] = useState(null);
   const textareaElemet = useRef();
   const selectElemet = useRef();
   const [confirm_pass, setConfirm_pass] = useState('');
-  const { email, username, profesi, nomor_hp, alamat, password, angkatan, nim } = data;
+  const { email, username, profesi, nomor_hp, alamat, password, angkatan, nim, image } = data;
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    if (e.target.files?.length > 0) {
+      setData({ ...data, [e.target.name]: e.target.files[0] });
+      const file = e.target.files[0];
+      setPreviewAvatar(URL.createObjectURL(file));
+    } else {
+      setData({ ...data, [e.target.name]: e.target.value });
+    }
   };
   const handleReset = () => {
     Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
     textareaElemet.current.value = '';
     selectElemet.current.value = '';
-    setData({ ...data, password: '', email: '', username: '', profesi: '', nomor_hp: '', alamat: '', nim: '', angkatan: '' });
+    setData({ ...data, password: '', email: '', username: '', profesi: '', nomor_hp: '', alamat: '', nim: '', angkatan: '', image: null });
     setConfirm_pass('');
+    setPreviewAvatar(null);
     setLoading(false);
   };
   const registerHandle = async (e) => {
@@ -93,6 +103,14 @@ const FormRegister = () => {
   return (
     <form onSubmit={registerHandle} className="px-6 py-11 bg-gradient-to-tr bg-white space-y-3 font-semibold text-[#3d3222]">
       <h1 className="text-3xl md:text-4xl text-gray-500 mb-6 pb-6 border-b font-bold">Register Account</h1>
+      <div className="flex flex-col space-y-1  w-fit">
+        <label htmlFor="image">Pilih Gambar</label>
+        <label className="cursor-pointer relative" htmlFor="image">
+          <BiImageAdd className="absolute top-0 right-[-10px] font-extrabold text-2xl text-yellow-500" />
+          <img src={previewAvatar ? previewAvatar : image} alt="book file upload" className="w-[100px] h-auto " />
+        </label>
+        <input onChange={handleChange} className="p-[10px] hidden bg-slate-100 rounded-sm outline-input" type="file" id="image" name="image" />
+      </div>
       <div className="flex flex-col space-y-1">
         <label className="cursor-pointer" htmlFor="nama">
           Nama Lengkap
@@ -137,7 +155,7 @@ const FormRegister = () => {
         <label className="cursor-pointer" htmlFor="alamat">
           Alamat Lengkap
         </label>
-        <textarea ref={textareaElemet} onChange={handleChange} className="resize-y p-[10px] bg-slate-100 rounded-sm outline-input h-[50px]" placeholder="Masukan Alamat" name="alamat" id="alamat" cols="3" rows="3" required></textarea>
+        <textarea ref={textareaElemet} onChange={handleChange} className="resize-y p-[10px] bg-slate-100 rounded-sm outline-input h-[50px]" placeholder="Masukan Alamat" name="alamat" id="alamat" cols="10" rows="10" required></textarea>
       </div>
       <div className="flex flex-col space-y-1">
         <label className="cursor-pointer" htmlFor="password">
