@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
+import { BiImageAdd } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -14,6 +15,7 @@ const inisialState = {
   profesi: '',
   nomor_hp: '',
   alamat: '',
+  image: null,
   password: '',
 };
 const FormUpdate = () => {
@@ -23,7 +25,9 @@ const FormUpdate = () => {
   const textareaElemet = useRef();
   const selectElemet = useRef();
   const [confirm_pass, setConfirm_pass] = useState('');
-  const { password } = data;
+  const [previewAvatar, setPreviewAvatar] = useState(null);
+
+  const { password, image } = data;
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -32,8 +36,9 @@ const FormUpdate = () => {
     Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
     textareaElemet.current.value = '';
     selectElemet.current.value = '';
-    setData({ ...data, email: '', username: '', profesi: '', nomor_hp: '', alamat: '', password: '', nim: '', angkatan: '' });
+    setData({ ...data, email: '', username: '', profesi: '', image: null, nomor_hp: '', alamat: '', password: '', nim: '', angkatan: '' });
     setConfirm_pass('');
+    setPreviewAvatar(null);
     setLoading(false);
   };
   // if update data. get old data user
@@ -90,6 +95,14 @@ const FormUpdate = () => {
   return (
     <form onSubmit={handleUpdateUser} className="px-[8px] md:px-6 py-11 bg-gradient-to-tr bg-white space-y-3 font-semibold text-[#3d3222]">
       <h1 className="text-4xl text-gray-500 mb-6 pb-6 border-b font-bold">Update Account</h1>
+      <div className="flex flex-col space-y-1  w-fit">
+        <label htmlFor="image">Pilih Gambar</label>
+        <label className="cursor-pointer relative" htmlFor="image">
+          <BiImageAdd className="absolute top-0 right-[-10px] font-extrabold text-2xl text-yellow-500" />
+          <img src={previewAvatar ? previewAvatar : image} alt="book file upload" className="w-[100px] h-auto " />
+        </label>
+        <input onChange={handleChange} className="p-[10px] hidden bg-slate-100 rounded-sm outline-input" type="file" id="image" name="image" />
+      </div>
       <div className="flex flex-col space-y-1">
         <label className="cursor-pointer" htmlFor="nama">
           Nama Lengkap
