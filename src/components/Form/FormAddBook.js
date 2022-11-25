@@ -56,7 +56,7 @@ const FormAddBook = () => {
     return () => {
       cancelToken.cancel();
     };
-  }, [id]);
+  }, [id, setIdParam]);
   const handleChange = (e) => {
     if (e.target.files?.length > 0) {
       setData({ ...data, [e.target.name]: e.target.files[0] });
@@ -158,6 +158,8 @@ const FormAddBook = () => {
     handleReset();
   };
   console.log('PREVIEW: ', previewAvatar);
+  console.log('id: ', id);
+  console.log('id pram: ', idParam);
   // PROTECT DATA PERSONALITY OF OTHER USER
   if (!user?.user?.admin && idParam !== user?.user?._id) {
     return <Navigate to="/protect" replace />;
