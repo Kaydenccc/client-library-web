@@ -15,6 +15,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   const [message, setMessage] = useState(null);
   const [transaksi, setTransaksi] = useState(null);
   const [userId, setUserId] = useState('');
+  const [isDelete, setIsDelete] = useState(false);
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.login);
@@ -43,12 +44,14 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   }, [userId, dispatch]);
 
   const deleteLog = async (id) => {
-    try {
-      await axios.delete(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`);
-    } catch (err) {
-      console.log(err);
+    if (isDelete) {
+      try {
+        await axios.delete(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`);
+      } catch (err) {
+        console.log(err);
+      }
+      setUserId(id);
     }
-    setUserId(id);
   };
 
   const searchUser = async (e) => {
@@ -74,7 +77,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   };
   return (
     <div className="h-full flex flex-col overflow-hidden">
-      <PopModal text="Are you sure to delete this ?" />
+      <PopModal setIsDelete={setIsDelete} text="Are you sure to delete this ?" />
       <div className="w-full md:flex-row flex-col flex items-start md:items-center justify-between mb-3">
         <h3 className="text-lg font-semibold flex justify-start gap-2 items-center ">
           <IoIosPeople className="text-2xl" />
