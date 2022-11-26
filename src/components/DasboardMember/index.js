@@ -62,7 +62,7 @@ const DashboardMember = () => {
         <Card total={totalBooks} text="Total Buku" className="flex text-right items-center justify-between flex-[1] bg-slate-50 shadow-md p-4" icon={<GiWhiteBook className="text-6xl text-white" />} />
         <Card total={totalTransaksi} text="Peminjaman" className="flex text-right items-center justify-between flex-[1] bg-slate-50 shadow-md p-4" icon={<IoIosBookmarks className="text-6xl text-white" />} />
       </div>
-      {user?.user?.admin === undefined && !user?.user?.admin ? (
+      {user?.user?.admin !== undefined && !user?.user?.admin ? (
         <BooksMember />
       ) : (
         <div className="flex flex-col h-full w-full">
