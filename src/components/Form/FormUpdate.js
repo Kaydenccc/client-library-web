@@ -31,7 +31,7 @@ const FormUpdate = () => {
 
   const handleChange = (e) => {
     if (e.target.files?.length > 0) {
-      setData({ ...data, [e.target.name]: e.target.files[0] });
+      setData({ ...data, image: e.target.files[0] });
       const file = e.target.files[0];
       setPreviewAvatar(URL.createObjectURL(file));
     } else {

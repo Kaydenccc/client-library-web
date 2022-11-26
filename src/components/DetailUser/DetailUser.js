@@ -49,7 +49,7 @@ const DetailUser = () => {
             </div>
             <div className="space-y-0 md:space-y-2 overflow-hidden">
               <p className="text-xl md:text-4xl font-bold">{data?.username}</p>
-              <p className="text-[12px] md:text-xl text-ellipsis whitespace-nowrap ">{data?.email}</p>
+              <p className="text-[12px] md:text-xl text-ellipsis whitespace-nowrap text-gray-600">{data?.email}</p>
             </div>
           </div>
           <button onClick={() => navigate('/update-user/' + data?._id)} className="text-[14px] md:text-[16] px-4 mr-4 h-fit bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md shadow-sm font-medium">
@@ -60,24 +60,24 @@ const DetailUser = () => {
           <div className="flex-[0.2] space-y-8">
             <div className="w-full space-y-1">
               <p className="font-bold tracking-widest">Username</p>
-              <p className="pb-2 border-b-2">{data?.username}</p>
+              <p className="pb-2 border-b-2 text-gray-500">{data?.username}</p>
             </div>
             <div className="w-full space-y-1">
               <p className="font-bold tracking-widest">Email</p>
-              <p className="pb-2 border-b-2">{data?.email}</p>
+              <p className="pb-2 border-b-2 text-gray-500">{data?.email}</p>
             </div>
             <div className="w-full space-y-1">
               <p className="font-bold tracking-widest">NIM</p>
-              <p className="pb-2 border-b-2">{data?.nim}</p>
+              <p className="pb-2 border-b-2 text-gray-500">{data?.nim}</p>
             </div>
             <div className="w-full space-y-1">
               <p className="font-bold tracking-widest">Profesi</p>
-              <p className="pb-2 border-b-2">{data?.profesi}</p>
+              <p className="pb-2 border-b-2 text-gray-500">{data?.profesi}</p>
             </div>
 
             <div className="w-full space-y-1">
               <p className="font-bold tracking-widest">Alamat</p>
-              <p className="pb-2 border-b-2">{data?.alamat}</p>
+              <p className="pb-2 border-b-2 text-gray-500">{data?.alamat}</p>
             </div>
           </div>
           <div className="flex-[0.8] shadow-sm overflow-hidden overflow-x-auto scroll-thumb">

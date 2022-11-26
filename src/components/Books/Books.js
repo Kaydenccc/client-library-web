@@ -18,7 +18,7 @@ const Books = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const [message, setMessage] = useState(null);
-  const [reload, serReload] = useState(false);
+  const [reload, setReload] = useState(false);
   const [books, setBooks] = useState([]);
   const selectElemet = useRef();
   const [filter, setFilter] = useState('All');
@@ -71,7 +71,7 @@ const Books = () => {
     return () => {
       cancelToken.cancel();
     };
-  }, [bookId, dispatch, filter, skip, perPage]);
+  }, [reload, dispatch, filter, skip, perPage]);
 
   // DELETE BOOK
   const deleteBook = async (id) => {
@@ -81,7 +81,7 @@ const Books = () => {
       setIsDelete(false);
       setOpenPop(false);
       setLoading(false);
-      serReload(!reload);
+      setReload(!reload);
       toast('Delete Success', {
         className: 'toast-success',
         bodyClassName: 'toast-success',
