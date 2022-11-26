@@ -39,7 +39,6 @@ const FormUpdate = () => {
       setData({ ...data, [e.target.name]: e.target.value });
     }
   };
-  console.log(data);
   const handleReset = () => {
     Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
     textareaElemet.current.value = '';
@@ -94,6 +93,8 @@ const FormUpdate = () => {
     }
     handleReset();
   };
+
+  console.log(data);
 
   // PROTECT DATA PERSONALITY OF OTHER USER
   if (!user?.user?.admin && userIdUpdate !== user?.user?._id) {
