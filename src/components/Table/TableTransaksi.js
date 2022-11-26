@@ -71,6 +71,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     try {
       const res = await axios.get(`https://library-perpus.herokuapp.com/api/log/v1/log/search/${search}`);
       setMessage(null);
+      console.log(res.data);
       setTransaksi(res.data.log);
     } catch (err) {
       console.log(err);
