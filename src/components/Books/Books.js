@@ -147,7 +147,6 @@ const Books = () => {
             <button type="submit">Search by title: </button>
             <input
               onChange={(e) => {
-                setBooks([]);
                 setSearch(e.target.value);
               }}
               value={search}
