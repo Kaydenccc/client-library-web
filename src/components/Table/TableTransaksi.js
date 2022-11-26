@@ -71,7 +71,6 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     try {
       const res = await axios.get(`https://library-perpus.herokuapp.com/api/log/v1/log/search/${search}`);
       setMessage(null);
-
       setTransaksi(res.data.log);
     } catch (err) {
       console.log(err);
@@ -139,7 +138,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
           </thead>
           <tbody className="w-auto md:w-full h-full flex flex-[1] flex-col  overflow-y-auto scroll-smooth scroll-thumb ">
             {transaksi ? (
-              transaksi.map((trans, i) => (
+              transaksi?.map((trans, i) => (
                 <tr key={i} className=" table-row row cursor-pointer">
                   <td onClick={() => user?.user?.admin && navigate('/detail-log/' + trans._id)} className="flex-[0.5]">
                     {i + 1}
