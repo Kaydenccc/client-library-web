@@ -4,7 +4,7 @@ const loginSlice = createSlice({
   name: 'login',
   initialState: {
     accessToken: '',
-    isLoggedin: false,
+    isLoggedin: null,
     user: '',
     userIdUpdate: '',
   },

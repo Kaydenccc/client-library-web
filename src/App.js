@@ -67,7 +67,7 @@ function App() {
   return (
     <div className="App w-full md:w-full xl:w-[1440px] xl:mx-auto">
       <Routes>
-        <Route path="/" element={isLoggedin ? <Home /> : <Auth />}>
+        <Route path="/" element={isLoggedin !== null && isLoggedin ? <Home /> : <Auth />}>
           <Route path="/" element={<DashboardMember />} />
           <Route path="data-users" element={<Datausers />} />
           <Route path="daftar-buku" element={<Books />} />
