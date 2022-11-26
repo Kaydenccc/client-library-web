@@ -30,7 +30,7 @@ const FormUpdate = () => {
   const { password, image } = data;
 
   const handleChange = (e) => {
-    console.log(e.target.files);
+    console.log('IMAGE=', e.target.files);
     if (e.target.files?.length > 0) {
       setData({ ...data, image: e.target.files[0] });
       const file = e.target.files[0];
