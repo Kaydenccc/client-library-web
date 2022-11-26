@@ -20,14 +20,13 @@ const inisialState = {
 };
 const FormUpdate = () => {
   const [loading, setLoading] = useState(null);
-  // const [user, setUser] = useState('');
   const [data, setData] = useState(inisialState);
   const textareaElemet = useRef();
   const selectElemet = useRef();
   const [confirm_pass, setConfirm_pass] = useState('');
   const [previewAvatar, setPreviewAvatar] = useState(null);
 
-  const { password, image } = data;
+  const { password, image, username, nim, angkatan, profesi, nomor_hp, alamat } = data;
 
   const handleChange = (e) => {
     console.log('IMAGE=', e.target.files);
@@ -77,13 +76,35 @@ const FormUpdate = () => {
       }
     }
     try {
-      const res = await axios.put(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`, data);
-      setData(res.data.data);
-      setLoading(false);
-      toast(res.data.msg, {
-        className: 'toast-success',
-        bodyClassName: 'toast-success',
-      });
+      if (image) {
+        const formdata = new FormData();
+        formdata.append('image', image);
+        formdata.append('username', username);
+        formdata.append('nim', nim);
+        formdata.append('angkatan', angkatan);
+        formdata.append('profesi', profesi);
+        formdata.append('nomor_hp', nomor_hp);
+        formdata.append('alamat', alamat);
+        const res = await axios.put(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`, formdata, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        setData(res.data.data);
+        setLoading(false);
+        toast(res.data.msg, {
+          className: 'toast-success',
+          bodyClassName: 'toast-success',
+        });
+      } else {
+        const res = await axios.put(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`, data);
+        setData(res.data.data);
+        setLoading(false);
+        toast(res.data.msg, {
+          className: 'toast-success',
+          bodyClassName: 'toast-success',
+        });
+      }
     } catch (err) {
       setLoading(false);
       return toast(err.response.data.msg, {
