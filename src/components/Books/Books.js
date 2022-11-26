@@ -108,10 +108,7 @@ const Books = () => {
     try {
       const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/search/${search}`);
       if (res.data.data.length > 1) {
-        setMessage(null);
         setBooks([...res.data.data].reverse());
-      } else {
-        setMessage('You have seen all of book');
       }
     } catch (err) {
       console.log(err);
