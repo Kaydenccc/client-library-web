@@ -22,6 +22,7 @@ import DetailUser from './components/DetailUser/DetailUser';
 import Protect from './components/Protect/Protect';
 import NotFound from './Pages/NotFound/NotFound';
 axios.defaults.withCredentials = true;
+
 function App() {
   const { accessToken, isLoggedin, updated } = useSelector((state) => state.login);
   const dispatch = useDispatch();
