@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { BiImageAdd } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { isEmpty, isMatch } from '../../helper/validate';
@@ -23,6 +24,7 @@ const FormUpdate = () => {
   const [data, setData] = useState(inisialState);
   const textareaElemet = useRef();
   const selectElemet = useRef();
+  const navigate = useNavigate();
   const [confirm_pass, setConfirm_pass] = useState('');
   const [previewAvatar, setPreviewAvatar] = useState(null);
 
@@ -96,7 +98,7 @@ const FormUpdate = () => {
           bodyClassName: 'toast-success',
         });
         handleReset();
-        return <Navigate to="/" replace />;
+        navigate('/');
       } else {
         const res = await axios.put(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`, data);
         setData(res.data.data);
@@ -106,7 +108,7 @@ const FormUpdate = () => {
           bodyClassName: 'toast-success',
         });
         handleReset();
-        return <Navigate to="/" replace />;
+        navigate('/');
       }
     } catch (err) {
       setLoading(false);
