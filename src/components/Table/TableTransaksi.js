@@ -71,7 +71,6 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     try {
       const res = await axios.get(`https://library-perpus.herokuapp.com/api/log/v1/log/search/${search}`);
       setMessage(null);
-      console.log(res.data);
       setTransaksi(res.data.log);
     } catch (err) {
       console.log(err);
@@ -83,7 +82,6 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     setSearch('');
   };
 
-  console.log(transaksi);
   // CREATE DEADLINE TIME
   const deadline = (time) => {
     return new Date(Math.ceil(new Date(time).getTime() + 1000 * 3600 * 24 * 7)).toDateString();
