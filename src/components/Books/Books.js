@@ -40,18 +40,14 @@ const Books = () => {
     const getBoosks = async () => {
       setIsEnd(false);
       try {
-        const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/pagination?skip=${skip}&perPage=${perPage}`, {
-          cancelToken: cancelToken.token,
-        });
-        dispatch(getTotalBooks(res.data.totalData));
-        if (res.data.data.length === 0) {
-          return setIsEnd(true);
-        }
         if (filter === 'All') {
           const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/pagination?skip=${skip}&perPage=${perPage}`, {
             cancelToken: cancelToken.token,
           });
           dispatch(getTotalBooks(res.data.totalData));
+          if (res.data.data.length === 0) {
+            return setIsEnd(true);
+          }
           setBooks([...books, ...res.data.data]);
         } else {
           const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/books`, {
