@@ -24,15 +24,12 @@ import NotFound from './Pages/NotFound/NotFound';
 axios.defaults.withCredentials = true;
 export let admin = false;
 function App() {
-  const { accessToken, user, isLoggedin } = useSelector((state) => state.login);
+  const { accessToken, isLoggedin, updated } = useSelector((state) => state.login);
   const dispatch = useDispatch();
   useEffect(() => {
     const _appSigning = localStorage.getItem('_appSigning');
 
     if (_appSigning) {
-      if (user?.user?.email === 'admin@gmail.com' && user?.user?.password === 'admin99') {
-        return;
-      }
       const getAccessToken = async () => {
         try {
           const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/access', {
@@ -46,7 +43,7 @@ function App() {
       };
       getAccessToken();
     }
-  }, [dispatch, isLoggedin, user?.user?.email, user?.user?.password]);
+  }, [dispatch, isLoggedin, updated]);
 
   //get user data
   useEffect(() => {

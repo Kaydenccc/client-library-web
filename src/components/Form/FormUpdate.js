@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { BiImageAdd } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { setUpdated } from '../../features/loginSlice';
 import { isEmpty, isMatch } from '../../helper/validate';
 
 const inisialState = {
@@ -25,6 +27,7 @@ const FormUpdate = () => {
   const textareaElemet = useRef();
   const selectElemet = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [confirm_pass, setConfirm_pass] = useState('');
   const [previewAvatar, setPreviewAvatar] = useState(null);
 
@@ -91,6 +94,7 @@ const FormUpdate = () => {
             'Content-Type': 'multipart/form-data',
           },
         });
+        dispatch(setUpdated());
         setData(res.data.data);
         setLoading(false);
         toast(res.data.msg, {

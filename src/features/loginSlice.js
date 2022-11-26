@@ -7,6 +7,7 @@ const loginSlice = createSlice({
     isLoggedin: null,
     user: '',
     userIdUpdate: '',
+    updated: false,
   },
   reducers: {
     getToken(state, action) {
@@ -14,6 +15,9 @@ const loginSlice = createSlice({
     },
     isLogin(state, action) {
       state.isLoggedin = action.payload;
+    },
+    setUpdated(state, action) {
+      state.updated = !state.updated;
     },
 
     getUserData(state, action) {
@@ -25,5 +29,5 @@ const loginSlice = createSlice({
   },
 });
 
-export const { getToken, isLogin, getUserData, getUserId } = loginSlice.actions;
+export const { getToken, isLogin, getUserData, getUserId, setUpdated } = loginSlice.actions;
 export default loginSlice.reducer;
