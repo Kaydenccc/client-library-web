@@ -29,7 +29,6 @@ const FormUpdate = () => {
   const { password, image, username, nim, angkatan, profesi, nomor_hp, alamat } = data;
 
   const handleChange = (e) => {
-    console.log('IMAGE=', e.target.files);
     if (e.target.files?.length > 0) {
       setData({ ...data, image: e.target.files[0] });
       const file = e.target.files[0];
@@ -96,6 +95,8 @@ const FormUpdate = () => {
           className: 'toast-success',
           bodyClassName: 'toast-success',
         });
+        handleReset();
+        return <Navigate to="/" replace />;
       } else {
         const res = await axios.put(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`, data);
         setData(res.data.data);
@@ -104,6 +105,8 @@ const FormUpdate = () => {
           className: 'toast-success',
           bodyClassName: 'toast-success',
         });
+        handleReset();
+        return <Navigate to="/" replace />;
       }
     } catch (err) {
       setLoading(false);
@@ -112,14 +115,13 @@ const FormUpdate = () => {
         bodyClassName: 'toast-failed',
       });
     }
-    handleReset();
   };
 
-  console.log(data);
-
   // PROTECT DATA PERSONALITY OF OTHER USER
-  if (!user?.user?.admin && userIdUpdate !== user?.user?._id) {
-    return <Navigate to="/protect" replace />;
+  if (user?.user?.admin !== undefined) {
+    if (!user?.user?.admin && userIdUpdate !== user?.user?._id) {
+      return <Navigate to="/protect" replace />;
+    }
   }
 
   return (
