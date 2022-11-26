@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -12,8 +11,6 @@ const Reset = () => {
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState('');
   const [cf_password, setCf_password] = useState('');
-  const {user} = useSelector(state=> state.login)
-  
 
   const { token } = useParams();
 

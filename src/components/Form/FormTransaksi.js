@@ -90,8 +90,10 @@ const FormTransaksi = () => {
   }, [pathname, id, data]);
 
   // PROTECT DATA PERSONALITY OF OTHER USER
-  if (!user?.user?.admin) {
-    return <Navigate to="/protect" replace />;
+  if (user?.user?.admin !== undefined) {
+    if (!user?.user?.admin) {
+      return <Navigate to="/protect" replace />;
+    }
   }
   return (
     <form onSubmit={registerHandle} className="px-6 py-11 bg-gradient-to-tr bg-white space-y-3 font-semibold text-[#3d3222]">
