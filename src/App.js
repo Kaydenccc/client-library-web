@@ -22,7 +22,6 @@ import DetailUser from './components/DetailUser/DetailUser';
 import Protect from './components/Protect/Protect';
 import NotFound from './Pages/NotFound/NotFound';
 axios.defaults.withCredentials = true;
-export let admin = false;
 function App() {
   const { accessToken, isLoggedin, updated } = useSelector((state) => state.login);
   const dispatch = useDispatch();
@@ -64,7 +63,7 @@ function App() {
   return (
     <div className="App w-full md:w-full xl:w-[1440px] xl:mx-auto">
       <Routes>
-        <Route path="/" element={isLoggedin !== null && isLoggedin ? <Home /> : <Auth />}>
+        <Route path="/" element={isLoggedin !== null && !isLoggedin ? <Auth /> : <Home />}>
           <Route path="/" element={<DashboardMember />} />
           <Route path="data-users" element={<Datausers />} />
           <Route path="daftar-buku" element={<Books />} />
