@@ -119,7 +119,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
                 <button type="submit">
                   <p className="font-bold self-start">Search by Kode Transaksi:</p>{' '}
                 </button>
-                <input onChange={(e) => setSearch(e.target.value)} value={search} className="px-[10px] self-start  bg-slate-200 py-1 placeholder:text-[14px]" type="text" placeholder="Search log" />
+                <input onChange={(e) => setSearch(e.target.value)} className="px-[10px] self-start  bg-slate-200 py-1 placeholder:text-[14px]" type="text" placeholder="Search log" />
               </form>
             )}
           </div>
