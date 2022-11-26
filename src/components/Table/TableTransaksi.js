@@ -81,6 +81,8 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     }
     setSearch('');
   };
+
+  console.log(transaksi);
   // CREATE DEADLINE TIME
   const deadline = (time) => {
     return new Date(Math.ceil(new Date(time).getTime() + 1000 * 3600 * 24 * 7)).toDateString();
