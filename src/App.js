@@ -41,6 +41,8 @@ function App() {
         }
       };
       getAccessToken();
+    } else {
+      dispatch(isLogin(false));
     }
   }, [dispatch, isLoggedin, updated]);
 
