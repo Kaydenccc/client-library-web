@@ -17,7 +17,6 @@ const categories = ['Umum', 'Seni & Musik', 'Biografi', 'Bisnis', 'Komik', 'Komp
 const Books = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
-  const [message, setMessage] = useState(null);
   const [reload, setReload] = useState(false);
   const [books, setBooks] = useState([]);
   const selectElemet = useRef();
@@ -115,9 +114,6 @@ const Books = () => {
         setMessage('You have seen all of book');
       }
     } catch (err) {
-      if (err.response.status === 404) {
-        setMessage('Upss, Not found the book');
-      }
       console.log(err);
     }
     setSearch('');

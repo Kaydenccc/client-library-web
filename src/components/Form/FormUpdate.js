@@ -30,6 +30,7 @@ const FormUpdate = () => {
   const { password, image } = data;
 
   const handleChange = (e) => {
+    console.log(e.target.files);
     if (e.target.files?.length > 0) {
       setData({ ...data, image: e.target.files[0] });
       const file = e.target.files[0];
@@ -38,6 +39,7 @@ const FormUpdate = () => {
       setData({ ...data, [e.target.name]: e.target.value });
     }
   };
+  console.log(data);
   const handleReset = () => {
     Array.from(document.querySelectorAll('input')).forEach((input) => (input.value = ''));
     textareaElemet.current.value = '';
