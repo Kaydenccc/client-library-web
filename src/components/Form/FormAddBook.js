@@ -163,6 +163,8 @@ const FormAddBook = () => {
       return <Navigate to="/protect" replace />;
     }
   }
+
+  console.log(pathname);
   return (
     <div className="flex-[1] flex-col flex bg-slate-200 py-8 px-[8px] md:px-6 overflow-y-scroll">
       <ToastContainer />

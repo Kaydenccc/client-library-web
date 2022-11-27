@@ -12,7 +12,6 @@ const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const getTransaksi = async () => {
-      console.log('testtt');
       try {
         const res = await axios.get('https://library-perpus.herokuapp.com/api/log/v1/log/books');
         let filterUsers = res.data?.data.filter((trans) => trans.data_user._id === id);
