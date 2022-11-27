@@ -51,7 +51,9 @@ const FormAddBook = () => {
         }
       }
     };
-    getById();
+    if (id) {
+      getById();
+    }
     return () => {
       cancelToken.cancel();
     };
