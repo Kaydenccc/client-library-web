@@ -9,7 +9,6 @@ import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { admin } from '../../App';
 // CATEFORIES
 const categories = ['Umum', 'Seni & Musik', 'Biografi', 'Bisnis', 'Komik', 'Komputer & Teknologi', 'Pendidikan & Referensi', 'Cooking', 'Hiburan', 'Sejarah', 'Self-Help', 'Agama', 'Medis', 'Sains'];
 const inisialState = {
@@ -166,7 +165,6 @@ const FormAddBook = () => {
     }
   }
 
-  console.log(pathname === '/add-book');
   return (
     <div className="flex-[1] flex-col flex bg-slate-200 py-8 px-[8px] md:px-6 overflow-y-scroll">
       <ToastContainer />
