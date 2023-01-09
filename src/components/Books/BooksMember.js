@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay } from 'swiper';
 // CATEGORY
+const server_url = 'https://server-library-web.vercel.app';
 const BooksMember = () => {
   const dispatch = useDispatch();
   const [bookId, setBookId] = useState('');
@@ -16,7 +17,7 @@ const BooksMember = () => {
   useEffect(() => {
     const getBoosks = async () => {
       try {
-        const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/books`);
+        const res = await axios.get(server_url + `/api/books/v1/get/books`);
         setBooks(res.data.data);
       } catch (err) {
         console.log(err.message);
@@ -28,7 +29,7 @@ const BooksMember = () => {
   // DELETE BOOK
   const deleteBook = async (id) => {
     try {
-      await axios.delete(`https://library-perpus.herokuapp.com/api/books/v1/delete/book/${id}`);
+      await axios.delete(server_url + `/api/books/v1/delete/book/${id}`);
       toast('Delete Success', {
         className: 'toast-success',
         bodyClassName: 'toast-success',

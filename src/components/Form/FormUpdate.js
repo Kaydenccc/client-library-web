@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { setUpdated } from '../../features/loginSlice';
 import { isEmpty, isMatch } from '../../helper/validate';
 
+const server_url = 'https://server-library-web.vercel.app';
 const inisialState = {
   email: '',
   username: '',
@@ -57,7 +58,7 @@ const FormUpdate = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`);
+        const res = await axios.get(server_url + `/api/auth/v1/user/${userIdUpdate}`);
         setData({ ...res.data.data });
       } catch (err) {
         return toast(err.response.data.msg, {
@@ -89,7 +90,7 @@ const FormUpdate = () => {
         formdata.append('profesi', profesi);
         formdata.append('nomor_hp', nomor_hp);
         formdata.append('alamat', alamat);
-        const res = await axios.put(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`, formdata, {
+        const res = await axios.put(server_url + `/api/auth/v1/user/${userIdUpdate}`, formdata, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -104,7 +105,7 @@ const FormUpdate = () => {
         handleReset();
         navigate('/');
       } else {
-        const res = await axios.put(`https://library-perpus.herokuapp.com/api/auth/v1/user/${userIdUpdate}`, data);
+        const res = await axios.put(server_url + `/api/auth/v1/user/${userIdUpdate}`, data);
         setData(res.data.data);
         setLoading(false);
         toast(res.data.msg, {

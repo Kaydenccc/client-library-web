@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-
+const server_url = 'https://server-library-web.vercel.app';
 const DetailBook = () => {
   const { user } = useSelector((state) => state.login);
   const [data, setData] = useState('');
@@ -15,7 +15,7 @@ const DetailBook = () => {
     const cancelToken = axios.CancelToken.source();
     const fetch = async () => {
       try {
-        const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/book/${id}`, {
+        const res = await axios.get(server_url + `/api/books/v1/get/book/${id}`, {
           cancelToken: cancelToken.token,
         });
         setData(res.data.data);

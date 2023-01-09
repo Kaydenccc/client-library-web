@@ -4,6 +4,7 @@ import { IoIosPeople } from 'react-icons/io';
 import Table from '../Table';
 import Footer from '../Footer/Footer';
 import axios from 'axios';
+const server_url = 'https://server-library-web.vercel.app';
 const Datausers = () => {
   //GET TOTAL USER
   const [totalUsers, setTotalUsers] = useState();
@@ -11,7 +12,7 @@ const Datausers = () => {
     const cancelToken = axios.CancelToken.source();
     const getUsers = async () => {
       try {
-        const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/users/pagination', {
+        const res = await axios.get(server_url + '/api/auth/v1/users/pagination', {
           cancelToken: cancelToken.token,
         });
         setTotalUsers(res.data.totalData);

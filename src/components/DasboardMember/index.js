@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { getTotalBooks, getTotalTransaksi, getTotalUser } from '../../features/totalSlice';
 import BooksMember from '../Books/BooksMember';
+const server_url = 'https://server-library-web.vercel.app';
 const DashboardMember = () => {
   const { totalUsers, totalTransaksi, totalBooks } = useSelector((state) => state.total);
   const { user } = useSelector((state) => state.login);
@@ -17,7 +18,7 @@ const DashboardMember = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/users/pagination');
+        const res = await axios.get(server_url + '/api/auth/v1/users/pagination');
         dispatch(getTotalUser(res.data.totalData));
       } catch (err) {
         console.log(err.message);
@@ -29,7 +30,7 @@ const DashboardMember = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get('https://library-perpus.herokuapp.com/api/log/v1/log/pagination');
+        const res = await axios.get(server_url + '/api/log/v1/log/pagination');
         dispatch(getTotalTransaksi(res.data.totalData));
       } catch (err) {
         console.log(err.message);
@@ -41,7 +42,7 @@ const DashboardMember = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get('https://library-perpus.herokuapp.com/api/books/v1/get/pagination');
+        const res = await axios.get(server_url + '/api/books/v1/get/pagination');
         dispatch(getTotalBooks(res.data.totalData));
       } catch (err) {
         console.log(err.message);

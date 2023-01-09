@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-
+const server_url = 'https://server-library-web.vercel.app';
 const DetailLog = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(null);
@@ -13,7 +13,7 @@ const DetailLog = () => {
   const deleteLog = async () => {
     setLoading(true);
     try {
-      await axios.delete(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`);
+      await axios.delete(server_url + `/api/log/v1/log/book/${id}`);
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -26,7 +26,7 @@ const DetailLog = () => {
     const cancelToken = axios.CancelToken.source();
     const fetch = async () => {
       try {
-        const res = await axios.get(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`, {
+        const res = await axios.get(server_url + `/api/log/v1/log/book/${id}`, {
           cancelToken: cancelToken.token,
         });
         setData(res.data.log);

@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import { isEmpty } from '../../helper/validate';
-
+const server_url = 'https://server-library-web.vercel.app';
 const inisialState = {
   bookID: '',
   nama_peminjam: '',
@@ -46,7 +46,7 @@ const FormTransaksi = () => {
     }
 
     try {
-      await axios.post('https://library-perpus.herokuapp.com/api/log/v1/log/book', data);
+      await axios.post(server_url + '/api/log/v1/log/book', data);
       setLoading(false);
       toast('Transaksi berhasil ditambahkan', {
         className: 'toast-success',
@@ -68,7 +68,7 @@ const FormTransaksi = () => {
     const cancelToken = axios.CancelToken.source();
     const getLogById = async () => {
       try {
-        const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/book/${id}`, {
+        const res = await axios.get(server_url + `/api/books/v1/get/book/${id}`, {
           cancelToken: cancelToken.token,
         });
         setBook(res.data.data);

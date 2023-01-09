@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import PopModal from '../PopModal/PopModal';
-
+const server_url = 'https://server-library-web.vercel.app';
 const Table = ({ tableName = 'Data Users', icon }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
     const getUsers = async () => {
       try {
         if (filter === 'all') {
-          const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/users/pagination?skip=${skip}`, {
+          const res = await axios.get(server_url + `/api/auth/v1/users/pagination?skip=${skip}`, {
             cancelToken: cancelToken.token,
           });
           if (res.data.data.length === 0) {
@@ -38,7 +38,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
           setUsers([...users, ...res.data.data]);
           return;
         } else {
-          const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/users', {
+          const res = await axios.get(server_url + '/api/auth/v1/users', {
             cancelToken: cancelToken.token,
           });
           if (res.data.data.length === 0) {
@@ -77,7 +77,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
   const deleteUser = async (id) => {
     setLoading(true);
     try {
-      await axios.delete(`https://library-perpus.herokuapp.com/api/auth/v1/user/${id}`);
+      await axios.delete(server_url + `/api/auth/v1/user/${id}`);
       setIsDelete(false);
       setOpenPop(false);
       setLoading(false);
@@ -97,7 +97,7 @@ const Table = ({ tableName = 'Data Users', icon }) => {
     e.preventDefault();
     setUsers('');
     try {
-      const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/search/${search}`);
+      const res = await axios.get(server_url + `/api/auth/v1/search/${search}`);
       setMessage(null);
       setUsers(res.data.data);
     } catch (err) {

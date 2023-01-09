@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PopModal from '../PopModal/PopModal';
-
+const server_url = 'https://server-library-web.vercel.app';
 const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     const cancelToken = axios.CancelToken.source();
     const getTransaksi = async () => {
       try {
-        const res = await axios.get('https://library-perpus.herokuapp.com/api/log/v1/log/books', {
+        const res = await axios.get(server_url + '/api/log/v1/log/books', {
           cancelToken: cancelToken.token,
         });
         let filterUsers;
@@ -49,7 +49,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   const deleteLog = async (id) => {
     setLoading(true);
     try {
-      await axios.delete(`https://library-perpus.herokuapp.com/api/log/v1/log/book/${id}`);
+      await axios.delete(server_url + `/api/log/v1/log/book/${id}`);
       setIsDelete(false);
       setOpenPop(false);
       setLoading(false);
@@ -69,7 +69,7 @@ const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
     e.preventDefault();
     setTransaksi('');
     try {
-      const res = await axios.get(`https://library-perpus.herokuapp.com/api/log/v1/log/search/${search}`);
+      const res = await axios.get(server_url + `/api/log/v1/log/search/${search}`);
       setMessage(null);
       setTransaksi(res.data.log);
     } catch (err) {

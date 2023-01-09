@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import TableTransaksiPribadi from '../Table/TableTransaksiPribadi';
-
+const server_url = 'https://server-library-web.vercel.app';
 const DetailUser = () => {
   // GET URL PARAMS
   const { id } = useParams();
@@ -16,7 +16,7 @@ const DetailUser = () => {
     const cancelToken = axios.CancelToken.source();
     const getUsers = async () => {
       try {
-        const res = await axios.get(`https://library-perpus.herokuapp.com/api/auth/v1/user/${id}`, {
+        const res = await axios.get(server_url + `/api/auth/v1/user/${id}`, {
           cancelToken: cancelToken.token,
         });
         setData(res.data.data);

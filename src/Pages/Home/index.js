@@ -7,7 +7,7 @@ import { setCloseSide } from '../../features/routeSlice';
 
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
-
+const server_url = 'https://server-library-web.vercel.app';
 const Home = () => {
   const { closeSide } = useSelector((state) => state.route);
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Home = () => {
   const handleLogout = async () => {
     localStorage.removeItem('_appSigning');
     try {
-      await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/signout');
+      await axios.get(server_url + '/api/auth/v1/signout');
     } catch (err) {
       console.log(err);
     }

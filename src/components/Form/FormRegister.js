@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { isEmail, isEmpty, isLength, isMatch } from '../../helper/validate';
-
+const server_url = 'https://server-library-web.vercel.app';
 const inisialState = {
   email: '',
   username: '',
@@ -74,7 +74,7 @@ const FormRegister = () => {
       });
     }
     try {
-      const res = await axios.post('https://library-perpus.herokuapp.com/api/auth/v1/register', data);
+      const res = await axios.post(server_url + '/api/auth/v1/register', data);
       setLoading(false);
       toast(res.data.msg, {
         className: 'toast-success',

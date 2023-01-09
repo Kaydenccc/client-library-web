@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-
+const server_url = 'https://server-library-web.vercel.app';
 const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
   const { id } = useParams();
   // const navigate = useNavigate();
@@ -13,7 +13,7 @@ const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
   useEffect(() => {
     const getTransaksi = async () => {
       try {
-        const res = await axios.get('https://library-perpus.herokuapp.com/api/log/v1/log/books');
+        const res = await axios.get(server_url + '/api/log/v1/log/books');
         let filterUsers = res.data?.data.filter((trans) => trans.data_user._id === id);
         setTransaksi(filterUsers);
       } catch (err) {

@@ -22,7 +22,7 @@ import DetailUser from './components/DetailUser/DetailUser';
 import Protect from './components/Protect/Protect';
 import NotFound from './Pages/NotFound/NotFound';
 axios.defaults.withCredentials = true;
-
+const server_url = 'https://server-library-web.vercel.app';
 function App() {
   const { accessToken, isLoggedin, updated } = useSelector((state) => state.login);
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function App() {
     if (_appSigning) {
       const getAccessToken = async () => {
         try {
-          const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/access', {
+          const res = await axios.get(server_url + '/api/auth/v1/access', {
             withCredentials: true,
           });
 
@@ -52,7 +52,7 @@ function App() {
     if (accessToken) {
       const getUser = async () => {
         dispatch(isLogin(true));
-        const res = await axios.get('https://library-perpus.herokuapp.com/api/auth/v1/user', {
+        const res = await axios.get(server_url + '/api/auth/v1/user', {
           headers: {
             Authorization: accessToken,
           },

@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { isEmail, isEmpty } from '../../helper/validate';
 import { useDispatch } from 'react-redux';
 import { getUserData, isLogin } from '../../features/loginSlice';
-
+const server_url = 'https://server-library-web.vercel.app';
 const ACCET_ADMIN = {
   user: {
     email: 'admin@gmail.com',
@@ -53,7 +53,7 @@ const Login = ({ setForgot }) => {
       });
     }
     try {
-      const res = await axios.post('https://library-perpus.herokuapp.com/api/auth/v1/login', data);
+      const res = await axios.post(server_url + '/api/auth/v1/login', data);
       localStorage.setItem('_appSigning', true);
       setLoading(false);
       toast(res.data.msg, {

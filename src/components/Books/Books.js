@@ -11,7 +11,7 @@ import { getTotalBooks } from '../../features/totalSlice';
 import BookMember from '../Book/BookMember';
 import Card from '../Card';
 import PopModal from '../PopModal/PopModal';
-
+const server_url = 'https://server-library-web.vercel.app';
 // CATEGORY
 const categories = ['Umum', 'Seni & Musik', 'Biografi', 'Bisnis', 'Komik', 'Komputer & Teknologi', 'Pendidikan & Referensi', 'Cooking', 'Hiburan', 'Sejarah', 'Self-Help', 'Agama', 'Medis', 'Sains'];
 const Books = () => {
@@ -41,7 +41,7 @@ const Books = () => {
       setIsEnd(false);
       try {
         if (filter === 'All') {
-          const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/pagination?skip=${skip}&perPage=${perPage}`, {
+          const res = await axios.get(server_url + `/api/books/v1/get/pagination?skip=${skip}&perPage=${perPage}`, {
             cancelToken: cancelToken.token,
           });
           dispatch(getTotalBooks(res.data.totalData));
@@ -50,7 +50,7 @@ const Books = () => {
           }
           setBooks([...books, ...res.data.data]);
         } else {
-          const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/books`, {
+          const res = await axios.get(server_url + `/api/books/v1/get/books`, {
             cancelToken: cancelToken.token,
           });
           let filterBooks = res.data.data.filter((user) => user.category === filter);
@@ -79,7 +79,7 @@ const Books = () => {
   const deleteBook = async (id) => {
     setLoading(true);
     try {
-      await axios.delete(`https://library-perpus.herokuapp.com/api/books/v1/delete/book/${id}`);
+      await axios.delete(server_url + `/api/books/v1/delete/book/${id}`);
       setIsDelete(false);
       setOpenPop(false);
       setLoading(false);
@@ -109,7 +109,7 @@ const Books = () => {
     e.preventDefault();
     setBooks('');
     try {
-      const res = await axios.get(`https://library-perpus.herokuapp.com/api/books/v1/get/search/${search}`);
+      const res = await axios.get(server_url + `/api/books/v1/get/search/${search}`);
       if (res.data.data.length > 1) {
         setBooks([...res.data.data].reverse());
       }

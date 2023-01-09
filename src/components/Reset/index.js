@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import { isEmpty, isLength, isMatch } from '../../helper/validate';
-
+const server_url = 'https://server-library-web.vercel.app';
 const Reset = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -42,7 +42,7 @@ const Reset = () => {
     }
     try {
       await axios.put(
-        'https://library-perpus.herokuapp.com/api/auth/v1/reset-password',
+        server_url + '/api/auth/v1/reset-password',
         { password },
         {
           headers: {
