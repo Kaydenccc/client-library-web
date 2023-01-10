@@ -35,6 +35,7 @@ function App() {
           const res = await axios.get(server_url + '/api/auth/v1/access', {
             withCredentials: true,
           });
+          console.log(res);
 
           dispatch(getToken(res.data.ac_token));
         } catch (err) {
@@ -62,7 +63,6 @@ function App() {
       getUser();
     }
   }, [dispatch, accessToken]);
-
   return (
     <div className="App w-full md:w-full xl:w-[1440px] xl:mx-auto">
       <Routes>
