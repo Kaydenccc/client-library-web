@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import { setUpdated } from '../../features/loginSlice';
 import { isEmpty, isMatch } from '../../helper/validate';
 
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const inisialState = {
   email: '',
   username: '',

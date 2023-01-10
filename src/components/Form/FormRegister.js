@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import { BiImageAdd } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { isEmail, isEmpty, isLength, isMatch } from '../../helper/validate';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const inisialState = {
   email: '',
   username: '',

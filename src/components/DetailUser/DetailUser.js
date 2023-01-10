@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import TableTransaksiPribadi from '../Table/TableTransaksiPribadi';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const DetailUser = () => {
   // GET URL PARAMS
   const { id } = useParams();

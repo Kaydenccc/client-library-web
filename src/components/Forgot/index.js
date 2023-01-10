@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import { isEmail } from '../../helper/validate';
 
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const Forgot = ({ setForgot }) => {
   const [loading, setLoading] = useState(null);
   const [email, setEmail] = useState('');
@@ -20,7 +20,7 @@ const Forgot = ({ setForgot }) => {
       });
     }
     try {
-      await axios.post(`https://server-library-web.vercel.app/api/auth/v1/forgot-password`, { email });
+      await axios.post(server_url + `/api/auth/v1/forgot-password`, { email });
       setLoading(false);
       handleReset();
       toast('We send you an email, Please check your email 📧', {

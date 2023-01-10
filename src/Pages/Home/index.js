@@ -7,7 +7,7 @@ import { setCloseSide } from '../../features/routeSlice';
 
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const Home = () => {
   const { closeSide } = useSelector((state) => state.route);
   const dispatch = useDispatch();

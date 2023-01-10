@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import { isEmpty } from '../../helper/validate';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const inisialState = {
   bookID: '',
   nama_peminjam: '',

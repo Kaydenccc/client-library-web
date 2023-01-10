@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { isEmail, isEmpty } from '../../helper/validate';
 import { useDispatch } from 'react-redux';
 import { getUserData, isLogin } from '../../features/loginSlice';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const ACCET_ADMIN = {
   user: {
     email: 'admin@gmail.com',

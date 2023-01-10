@@ -4,7 +4,7 @@ import { IoIosPeople } from 'react-icons/io';
 import Table from '../Table';
 import Footer from '../Footer/Footer';
 import axios from 'axios';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const Datausers = () => {
   //GET TOTAL USER
   const [totalUsers, setTotalUsers] = useState();

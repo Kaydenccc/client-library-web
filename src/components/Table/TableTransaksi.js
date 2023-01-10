@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PopModal from '../PopModal/PopModal';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const TableTransaksi = ({ tableName = 'Data Users', icon }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();

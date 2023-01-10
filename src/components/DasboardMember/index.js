@@ -9,7 +9,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { getTotalBooks, getTotalTransaksi, getTotalUser } from '../../features/totalSlice';
 import BooksMember from '../Books/BooksMember';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const DashboardMember = () => {
   const { totalUsers, totalTransaksi, totalBooks } = useSelector((state) => state.total);
   const { user } = useSelector((state) => state.login);

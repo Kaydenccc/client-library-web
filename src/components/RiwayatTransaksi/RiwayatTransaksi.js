@@ -7,7 +7,7 @@ import { getTotalTransaksi } from '../../features/totalSlice';
 import Card from '../Card';
 import Footer from '../Footer/Footer';
 import TableTransaksi from '../Table/TableTransaksi';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const RiwayatTransaksi = () => {
   const { totalTransaksi } = useSelector((state) => state.total);
   const dispatch = useDispatch();

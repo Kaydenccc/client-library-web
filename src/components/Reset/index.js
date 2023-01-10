@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import { isEmpty, isLength, isMatch } from '../../helper/validate';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const Reset = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);

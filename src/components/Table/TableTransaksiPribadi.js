@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-const server_url = 'https://server-library-web.vercel.app';
+const server_url = 'https://server-library-web-production.up.railway.app';
 const TableTransaksiPribadi = ({ tableName = 'Data Transaksi' }) => {
   const { id } = useParams();
   // const navigate = useNavigate();
